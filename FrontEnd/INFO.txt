@@ -1,0 +1,16 @@
+->Node.js cmd
+
+C:\MAMP\htdocs\ecommerce\FrontEnd
+npm install
+
+C:\MAMP\htdocs\ecommerce\FrontEnd\mapa
+npm run mapa
+
+->Cmd
+
+C:\MAMP\htdocs\ecommerce\FrontEnd\mapa
+json-server --watch db.json
+
+->browser
+
+http://localhost/ecommerce/FrontEnd/mapa/index.html#!/lista
