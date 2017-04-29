@@ -405,8 +405,7 @@ var comenziController = function comenziController($scope, serviceComenzi) {
 	// PUT
 	$scope.servPutComenzi = function (params, id) {
 		serviceComenzi.putData(params, id).then(function (response) {
-			console.log(response.data.id);
-			$scope.servGetComenzi();
+			console.log("");
 		}, function () {
 			console.log("Eroare in comenziController - servicePutComenzi");
 		});
@@ -585,10 +584,20 @@ var gestionareController = function gestionareController($scope, serviceGestiona
 	// PUT
 	$scope.servPutServicii = function (params, id) {
 		serviceGestionare.putData(params, id).then(function (response) {
-			console.log(response.data.id);
+			console.log("");
+			$scope.servGetServicii();
 		}, function () {
 			console.log("Eroare in gestionareController - servicePutServicii");
 		});
+	};
+	// POST
+	$scope.servPostServicii = function (params) {
+		serviceGestionare.postData(params).then(function (response) {
+			console.log("");
+		}, function () {
+			console.log("Eroare in gestionareController - servicePostServicii");
+		});
+		$scope.servGetServicii();
 	};
 	// DELETE
 	$scope.servDeleteServicii = function (id) {
@@ -633,6 +642,34 @@ var gestionareController = function gestionareController($scope, serviceGestiona
 		$scope.servDeleteServicii(row.entity.id);
 	};
 	$scope.servGetServicii();
+	// Adauga serviciu nou
+	$scope.options = [{ "iconCode": "1" }, { "iconCode": "2" }, { "iconCode": "3" }, { "iconCode": "4" }, { "iconCode": "1x2" }, { "iconCode": "1x3" }, { "iconCode": "2x3" }];
+	$scope.selectedOption = $scope.options[0];
+	// Btn Anulează
+	$scope.cancel = function () {
+		$scope.serviciu = '';
+		$scope.suma = '';
+		$scope.selectedOption = $scope.options[0];
+		$scope.descriere = '';
+	};
+	// Btn Adaugă serviciu
+	$scope.creareServNou = function () {
+		var totalElem = $scope.gridServicii.data.length;
+		var params = {
+			"serviciu": $scope.serviciu,
+			"iconCode": $scope.selectedOption.iconCode,
+			"descriere": $scope.descriere,
+			"suma": Number($scope.suma),
+			"id": totalElem + 1
+		};
+		if (obj.verificareSuma(params.suma)) {
+			$scope.servPostServicii(params);
+			location.reload();
+		} else {
+			sweetAlert("Atenţie!", "Aţi introdus o valoare incorectă pentru câmpul sumă!", "error");
+			$scope.cancel();
+		}
+	};
 };
 
 gestionareController.$inject = ['$scope', 'serviceGestionare'];
@@ -743,26 +780,37 @@ var serviceGestionare = function () {
         }).all('/servicii');
         //PUT
         this.resursaPut = Restangular.one("/servicii");
+        //POST
+        this.resursaPost = Restangular.withConfig(function (RestangularConfigurer) {
+            RestangularConfigurer.setFullResponse(true);
+        }).all('/servicii');
         // DELETE
         this.resursaDelete = Restangular.one("/servicii");
     }
 
     _createClass(serviceGestionare, [{
-        key: "getData",
+        key: 'getData',
         value: function getData() {
             return this.resursaGet.getList().then(function (response) {
                 return response;
             });
         }
     }, {
-        key: "putData",
+        key: 'putData',
         value: function putData(params, id) {
             return this.resursaPut.customPUT(params, id).then(function (data) {
                 return data;
             });
         }
     }, {
-        key: "deleteData",
+        key: 'postData',
+        value: function postData(params) {
+            return this.resursaPost.post(params).then(function (response) {
+                return response;
+            });
+        }
+    }, {
+        key: 'deleteData',
         value: function deleteData() {
             return this.resursaDelete.remove().then(function (data) {
                 return data;

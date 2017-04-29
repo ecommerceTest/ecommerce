@@ -112,8 +112,7 @@ class comenziController {
        // PUT
        $scope.servPutComenzi = function(params,id){
 		       	serviceComenzi.putData(params,id).then(function(response) {
-		       		console.log(response.data.id);
-		       		$scope.servGetComenzi();
+		       		console.log("");
 		       	}, function () {
 		       		console.log("Eroare in comenziController - servicePutComenzi");
 		       	});

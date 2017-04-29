@@ -93,8 +93,30 @@ div.ui-grid-cell-contents.ui-grid-header-cell-primary-focus{
     height: 550px;
 }
 /*FINAL UI-GRID*/
-
-
+ legend{
+  border-style:none;
+}
+.textLegenda{
+  text-align: center;
+  padding-top:10px;
+  font-size:35px;
+}
+.eroare{
+    color:#ff4d4d;
+    padding-top: 7px;
+    font-size: 14px;
+}
+.marimeBtn{
+   width: 150px;
+}
+@media screen and (max-width: 991px) {
+    .eroare{
+        font-size: 12px;
+    }
+    .marimeBtn{
+        width: 160px;
+    }
+}
 
 
 

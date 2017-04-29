@@ -1,0 +1,88 @@
+<!-- Modal -->
+<div  ng-controller = "gestionareController">
+  <div class="modal fade" id="serv" tabindex="-1" role="dialog" aria-labelledby="servLabel" aria-hidden="true">
+    <div class="modal-dialog custom-class">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="textLegenda" id="servLabel">Adaugă un serviciu nou</h4>
+        </div>
+        <div class="modal-body">
+            <!-- FORMULAR -->
+            <form class="form-horizontal" name="servForm" novalidate>
+              <fieldset>
+                <!-- Text input Serviciu-->
+                <div class="form-group">
+                  <label class="col-md-3 control-label">Serviciu</label>
+                  <div class="col-md-8 inputGroupContainer">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-triangle-right"></i></span>
+                      <input  name="serviciu" placeholder="Denumire serviciu" class="form-control" data-ng-model="serviciu" type="text" ng-trim="false" maxlength="25" required>
+                    </div>
+                    <!-- Validare camp Serviciu -->
+                    <div class="col-md-12 text-left" ng-messages="servForm.serviciu.$error">
+                      <div ng-message="required" class="eroare">* Vă rugăm să completaţi câmpul serviciu</div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Text input Suma-->
+                <div class="form-group">
+                  <label class="col-md-3 control-label">Suma</label>
+                  <div class="col-md-8 inputGroupContainer">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-euro"></i></span>
+                      <input  name="suma" placeholder="Suma serviciu" class="form-control" data-ng-model="suma" type="text" ng-trim="false" maxlength="10" required>
+                    </div>
+                    <!-- Validare camp Suma -->
+                    <div class="col-md-12 text-left" ng-messages="servForm.suma.$error">
+                      <div ng-message="required" class="eroare">* Vă rugăm să completaţi câmpul suma</div>
+                    </div>
+                  </div>
+                </div>
+                <!-- iconCode-->
+                <div class="form-group">
+                  <label class="col-md-3 control-label">Icon Code</label>
+                  <div class="col-md-8">
+                    <form>
+                        <select class="form-control" data-ng-options="o.iconCode for o in options" data-ng-model="selectedOption">
+                          <option>{{o}}</option>
+                        </select>
+                    </form>
+                  </div>
+                </div>
+                 <!-- Text input Descriere-->
+                <div class="form-group">
+                  <label class="col-md-3 control-label">Descriere</label>
+                  <div class="col-md-8 inputGroupContainer">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-copy"></i></span>
+                      <input  name="descriere" placeholder="Descriere serviciu" class="form-control" data-ng-model="descriere" type="text" ng-trim="false" maxlength="35" required>
+                    </div>
+                    <!-- Validare camp Descriere -->
+                    <div class="col-md-12 text-left" ng-messages="servForm.descriere.$error">
+                      <div ng-message="required" class="eroare">* Vă rugăm să completaţi câmpul descriere</div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Buttons -->
+                <div class="form-group">
+                  <label class="col-md-3 control-label"></label>
+                  <div class="col-md-8">
+                    <div class="aliniereBtn text-center">
+                      <button type="submit" class="btn btn-warning marimeBtn" data-dismiss="modal" ng-disabled="servForm.$invalid" ng-click = "creareServNou()">Adaugă serviciu<span class="glyphicon glyphicon-send"></span></button>
+                      <button type="submit" class="btn btn-danger marimeBtn" ng-click = "cancel()">Anulează <span class="glyphicon glyphicon-erase"></span></button>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </form>
+            <!-- FINAL FORMULAR -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Închide</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

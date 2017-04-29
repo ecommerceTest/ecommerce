@@ -110,6 +110,13 @@
       "descriere": "TV150, Internet200 si Telefonie1000",
       "suma": 600,
       "id": 7
+    },
+    {
+      "serviciu": "Internet500+Telefonie2000",
+      "iconCode": "2x3",
+      "descriere": "Internet500 si Telefonie2000",
+      "suma": 300,
+      "id": 8
     }
   ]
 }
