@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div  ng-controller = "creareController">
+<div  ng-controller = "adminController">
   <div class="modal fade" id="creare" tabindex="-1" role="dialog" aria-labelledby="creareLabel" aria-hidden="true">
     <div class="modal-dialog custom-class">
       <div class="modal-content">
@@ -8,7 +8,48 @@
           <h4 class="textLegenda" id="creareLabel">Creare cont nou</h4>
         </div>
         <div class="modal-body">
-                 Creare cont nou body
+            <form class="form-horizontal" name="contNouForm" novalidate>
+              <fieldset>
+                <!-- Text input Utilizator-->
+                <div class="form-group">
+                  <label class="col-md-3 control-label">Utilizator</label>
+                  <div class="col-md-8 inputGroupContainer">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                      <input  name="utilizator" placeholder="Nume utilizator" class="form-control" ng-model="utilizator" type="text" required>
+                    </div>
+                   <!-- Validare camp utilizator -->
+                    <div class="col-md-12 text-left" ng-messages="contNouForm.utilizator.$error">
+                      <div ng-message="required" class="eroare">* Vă rugăm să completaţi câmpul utilizator</div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Text input Parola-->
+                <div class="form-group">
+                  <label class="col-md-3 control-label">Parola</label>
+                  <div class="col-md-8 inputGroupContainer">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-share-alt"></i></span>
+                      <input  name="parola" placeholder="Parola poate să conţină maxim 10 caractere" class="form-control" ng-model="parola" type="password" ng-trim="false" maxlength="10" required>
+                    </div>
+                    <!-- Validare camp parola -->
+                    <div class="col-md-12 text-left" ng-messages="contNouForm.parola.$error">
+                      <div ng-message="required" class="eroare">* Vă rugăm să completaţi câmpul parola</div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Button -->
+                <div class="form-group">
+                  <label class="col-md-3 control-label"></label>
+                  <div class="col-md-8">
+                    <div class="aliniereBtn text-center">
+                      <button type="submit" class="btn btn-warning marimeBtn" data-dismiss="modal" ng-disabled="contNouForm.$invalid" ng-click = "creareContNou()">Crează cont <span class="glyphicon glyphicon-send"></span></button>
+                      <button type="submit" class="btn btn-danger marimeBtn" ng-click = "cancel()">Anulează <span class="glyphicon glyphicon-erase"></span></button>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Închide</button>

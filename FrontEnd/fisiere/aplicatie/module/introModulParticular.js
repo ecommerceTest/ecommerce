@@ -6,25 +6,25 @@ import controllerPrincipal from './controller/controllerPrincipal.js';
 import listaController from './controller/listaController.js';
 import cartController from './controller/cartController.js';
 import adminController from './controller/adminController.js';
-import creareController from './controller/creareController.js';
 import gestionareController from './controller/gestionareController.js';
 import comenziController from './controller/comenziController.js';
 
 // SERVICE
 import serviceComenzi from './service/serviceComenzi.js';
 import serviceGestionare from './service/serviceGestionare.js';
+import serviceAdministrator from './service/serviceAdministrator.js';
 
 export default angular.module('modulParticular', ['ui.router','ngMessages','restangular','ui.grid','ui.grid.edit'])
 .controller('controllerPrincipal', controllerPrincipal)
 .controller('listaController', listaController)
 .controller('cartController', cartController)
 .controller('adminController', adminController)
-.controller('creareController', creareController)
 .controller('gestionareController', gestionareController)
 .controller('comenziController', comenziController)
 
 .service('serviceComenzi', serviceComenzi)
 .service('serviceGestionare', serviceGestionare)
+.service('serviceAdministrator', serviceAdministrator)
 
 .config(['$qProvider','$urlRouterProvider','$stateProvider', 'RestangularProvider', function($qProvider, $urlRouterProvider,$stateProvider, RestangularProvider) {
 	RestangularProvider.setBaseUrl('http://localhost:3000');
