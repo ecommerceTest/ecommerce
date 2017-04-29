@@ -8,10 +8,56 @@
           <h4 class="textLegenda" id="adminLabel">Autentificare cont administrator</h4>
         </div>
         <div class="modal-body">
-            Autentificare cont administrator body
+            <form class="form-horizontal" name="autentForm" novalidate>
+              <fieldset>
+                <!-- Text input Utilizator-->
+                <div class="form-group">
+                  <label class="col-md-3 control-label">Utilizator</label>
+                  <div class="col-md-8 inputGroupContainer">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                      <input  name="utilizatorAut" placeholder="" class="form-control" ng-model="utilizatorAut" type="text" required>
+                    </div>
+                   <!-- Validare camp utilizator -->
+                    <div class="col-md-12 text-left" ng-messages="autentForm.utilizatorAut.$error">
+                      <div ng-message="required" class="eroare">* Vă rugăm să completaţi câmpul utilizator</div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Text input Parola-->
+                <div class="form-group">
+                  <label class="col-md-3 control-label">Parola</label>
+                  <div class="col-md-8 inputGroupContainer">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-share-alt"></i></span>
+                      <input  name="parolaAut" placeholder="" class="form-control" ng-model="parolaAut" type="password" ng-trim="false" maxlength="10" required>
+                    </div>
+                    <!-- Validare camp parola -->
+                    <div class="col-md-12 text-left" ng-messages="autentForm.parolaAut.$error">
+                      <div ng-message="required" class="eroare">* Vă rugăm să completaţi câmpul parola</div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Button -->
+                <div class="form-group">
+                  <label class="col-md-3 control-label"></label>
+                  <div class="col-md-8">
+                    <div class="aliniereBtn text-center">
+                      <button type="submit" class="btn btn-warning marimeBtn" data-dismiss="modal" ng-disabled="autentForm.$invalid" ng-click = "autentificareCont()">Autentificare <span class="glyphicon glyphicon-send"></span></button>
+                      <button type="submit" class="btn btn-danger marimeBtn" ng-click = "cancel()">Anulează <span class="glyphicon glyphicon-erase"></span></button>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Închide</button>
+         <div class="col-md-12 text-center">
+                  <div class="eroare">Utilizator: "Admin" - Parola "1234"</div>
+          </div>
+          <div class="col-md-12 text-right">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Închide</button>
+          </div>
         </div>
       </div>
     </div>

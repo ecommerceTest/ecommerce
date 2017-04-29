@@ -23,7 +23,7 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 </head>
-<body ng-controller = "controllerPrincipal">
+<body ng-controller = "controllerPrincipal" ng-cloak>
   <!-- HEADER -->
   <nav class="navbar navbar-inverse">
     <div class="container-fluid pozitieTextHeader">
@@ -40,10 +40,10 @@
             <li><a ui-sref="lista" data-target="#hamburger"> Listă servicii </a></li>
             <li><a ui-sref="cart"  data-target="#hamburger"> Coşul de cumpărături </a></li>
             <li><a data-target="#hamburger"><span data-toggle="modal" data-target="#admin"> Admin </span></a></li>
-            <li><a data-target="#hamburger"><span data-toggle="modal" data-target="#creare"> Creare cont</span></a></li>
-            <li><a ui-sref="gestionare"  data-target="#hamburger">Gestionare servicii</a></li>
-            <li><a ui-sref="comenzi" data-target="#hamburger">Comenzi</a></li>
-            <li><a data-target="#hamburger" ng-click="dezautentificare()">Dezautentificare</a></li>
+            <li><a data-target="#hamburger"><span data-toggle="modal" data-target="#creare" ng-show="autentificareAUT"> Creare cont</span></a></li>
+            <li><a ui-sref="gestionare"  data-target="#hamburger" ng-show="autentificareAUT">Gestionare servicii</a></li>
+            <li><a ui-sref="comenzi" data-target="#hamburger" ng-show="autentificareAUT">Comenzi</a></li>
+            <li><a data-target="#hamburger" ng-click="dezautentificare()" ng-show="autentificareAUT">Dezautentificare</a></li>
         </ul>
       </div>
     </div>
@@ -63,7 +63,7 @@
   <!-- FOOTER -->
   <footer>
     <div class="row"  id="subsol">
-      <p class="col-sm-12 text-center"> Copyright &copy; 2017 - Toate drepturile rezervate :) - E-commerce</p>  
+      <p class="col-sm-12 text-center"> Copyright &copy; 2017 - Hi, guys! :) - E-commerce</p>  
     </div>
   </footer>
   <!-- SFARSIT FOOTER -->

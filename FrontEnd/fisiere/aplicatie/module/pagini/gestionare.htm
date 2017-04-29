@@ -1,5 +1,5 @@
 <div class="container">
-   <div ui-grid="gridServicii" ui-grid-edit class="grid"></div>
+   <div ui-grid="gridServicii" ui-grid-edit class="grid hidden-xs hidden-sm"></div>
 </div>
 <div class="container">
 	<button type="button" class="btn btn-primary btn-block" style="margin:10px auto;"><span data-toggle="modal" data-target="#serv">Adaugă un serviciu</span></button>
@@ -7,7 +7,7 @@
   <div ng-include="'../fisiere/aplicatie/module/pagini/parti/serviciiModal.htm'"></div>
 </div>
 <div class="container">
-	<pre style="color:red;font-size: 10px;">
+	<pre style="color:red;font-size: 10px;" class="hidden-xs hidden-sm"">
 
 	În acest tabel:
 	-	Sortare coloane A-Z (click header coloană)
@@ -17,4 +17,9 @@
 	-	Se poate edita câmpuri, mai puţin câmpul „ID”, se pot şterge rânduri
 	
 	</pre>
+</div>
+<div class="container-fluid">
+	<p style="color:red;font-size:20px;background-color: white;" class="text-center hidden-md hidden-lg">
+			Conţinutul poate fi vizualizat pe rezoluţii mai mari de 992px
+	<p>
 </div>

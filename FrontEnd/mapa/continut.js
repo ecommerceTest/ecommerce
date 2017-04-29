@@ -24647,7 +24647,7 @@ Object.defineProperty(exports, "__esModule", {
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var adminController = function adminController($scope, serviceAdministrator) {
+var adminController = function adminController($scope, $window, serviceAdministrator) {
 	_classCallCheck(this, adminController);
 
 	var sha256 = __webpack_require__(125);
@@ -24655,16 +24655,41 @@ var adminController = function adminController($scope, serviceAdministrator) {
 	$scope.cancel = function () {
 		$scope.utilizator = '';
 		$scope.parola = '';
+		$scope.utilizatorAut = '';
+		$scope.parolaAut = '';
 	};
-	$scope.servVerificareUtiliz = function (ut) {
+	$scope.verificareCredentialeValide = function (params) {
 		serviceAdministrator.getData().then(function (response) {
 			var contor = 0;
 			for (var i = 0; i < response.data.length; i++) {
-				if (response.data[i].utilizator === ut) {
+				if (response.data[i].utilizator.toUpperCase() === params.utilizator.toUpperCase() && response.data[i].parola.toUpperCase() === params.parola.toUpperCase()) {
 					contor++;
 				}
 			}
-			if (contor === 0) {
+			if (contor > 0) {
+				swal("Autentificare reuşită!", "", "success");
+				$window.localStorage.setItem('AUT', JSON.stringify(params));
+				$scope.cancel();
+				setTimeout(function () {
+					$window.location.reload();
+				}, 1000);
+			} else {
+				sweetAlert("Atenţie!", "Introduceţi credenţiale valide", "error");
+				$scope.cancel();
+			}
+		}, function () {
+			console.log("Eroare in adminController - verificareCredentialeValide");
+		});
+	};
+	$scope.verificareUtilizExistent = function (ut) {
+		serviceAdministrator.getData().then(function (response) {
+			var contorU = 0;
+			for (var i = 0; i < response.data.length; i++) {
+				if (response.data[i].utilizator.toUpperCase() === ut.toUpperCase()) {
+					contorU++;
+				}
+			}
+			if (contorU === 0) {
 				var params = {
 					"utilizator": $scope.utilizator,
 					"parola": sha256($scope.parola + '')
@@ -24677,7 +24702,7 @@ var adminController = function adminController($scope, serviceAdministrator) {
 				$scope.cancel();
 			}
 		}, function () {
-			console.log("Eroare in adminController - servVerificareUtiliz");
+			console.log("Eroare in adminController - verificareUtilizExistent");
 		});
 	};
 	// POST
@@ -24690,11 +24715,19 @@ var adminController = function adminController($scope, serviceAdministrator) {
 	};
 	// Btn Crează cont
 	$scope.creareContNou = function () {
-		$scope.servVerificareUtiliz($scope.utilizator);
+		$scope.verificareUtilizExistent($scope.utilizator);
+	};
+	// Btn Autentificare cont
+	$scope.autentificareCont = function () {
+		var params = {
+			"utilizator": $scope.utilizatorAut,
+			"parola": sha256($scope.parolaAut + '')
+		};
+		$scope.verificareCredentialeValide(params);
 	};
 };
 
-adminController.$inject = ['$scope', 'serviceAdministrator'];
+adminController.$inject = ['$scope', '$window', 'serviceAdministrator'];
 exports.default = adminController;
 
 /***/ }),
@@ -24898,11 +24931,24 @@ Object.defineProperty(exports, "__esModule", {
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var controllerPrincipal = function controllerPrincipal($scope) {
+var controllerPrincipal = function controllerPrincipal($scope, $window, $location) {
 	_classCallCheck(this, controllerPrincipal);
+
+	window.AUT = JSON.parse(window.localStorage.getItem('AUT'));
+	if (window.AUT) {
+		$scope.autentificareAUT = true;
+	} else {
+		$scope.autentificareAUT = false;
+	}
+	$scope.dezautentificare = function () {
+		window.localStorage.removeItem('AUT');
+		$scope.autentificareAUT = false;
+		window.location.href = "#";
+		swal("Dezautentificare reuşită!", "", "success");
+	};
 };
 
-controllerPrincipal.$inject = ['$scope'];
+controllerPrincipal.$inject = ['$scope', '$window', '$location'];
 exports.default = controllerPrincipal;
 
 /***/ }),
