@@ -1,0 +1,115 @@
+{
+  "comenzi": [
+    {
+      "serviciu": "Internet200",
+      "cant": 1,
+      "status": "asteptare",
+      "numeClient": "Ceban",
+      "prenumeClient": "Stela",
+      "oras": "Cj",
+      "strada": "str.Apelor",
+      "numar": "12",
+      "suma": 200,
+      "id": 1
+    },
+    {
+      "serviciu": "TV150",
+      "cant": 1,
+      "suma": 300,
+      "status": "asteptare",
+      "numeClient": "Ciudin",
+      "prenumeClient": "Adrian",
+      "oras": "TgM",
+      "strada": "str.Zambetelor",
+      "numar": "75",
+      "id": 2
+    },
+    {
+      "serviciu": "Telefonie1000",
+      "cant": 1,
+      "suma": 50,
+      "status": "asteptare",
+      "numeClient": "Muresan",
+      "prenumeClient": "Darius",
+      "oras": "Iasi",
+      "strada": "str. Parang",
+      "numar": "20",
+      "id": 3
+    },
+    {
+      "serviciu": "Internet200+Telefonie1000",
+      "cant": 1,
+      "status": "asteptare",
+      "numeClient": "Florea",
+      "prenumeClient": "Anita",
+      "oras": "Tm",
+      "strada": "str. Zambilelor",
+      "numar": "145A",
+      "suma": 450,
+      "id": 4
+    },
+    {
+      "serviciu": "Internet+TV+Telefonie",
+      "cant": 1,
+      "status": "asteptare",
+      "numeClient": "Gherman",
+      "prenumeClient": "Elena",
+      "oras": "B",
+      "strada": "str. Narciselor",
+      "numar": "20",
+      "suma": 600,
+      "id": 5
+    }
+  ],
+  "servicii": [
+    {
+      "serviciu": "Internet200",
+      "iconCode": "1",
+      "descriere": "Internet 200 Mb",
+      "suma": 200,
+      "id": 1
+    },
+    {
+      "serviciu": "TV150",
+      "iconCode": "2",
+      "descriere": "TV 150 canale",
+      "suma": 300,
+      "id": 2
+    },
+    {
+      "serviciu": "Telefonie1000",
+      "iconCode": "3",
+      "suma": 50,
+      "descriere": "Telefonie 1000 min",
+      "id": 3
+    },
+    {
+      "serviciu": "Internet200+TV150",
+      "iconCode": "1x2",
+      "suma": 500,
+      "descriere": "TV 150 canale si Internet 200 Mb",
+      "id": 4
+    },
+    {
+      "serviciu": "Internet200+Telefonie1000",
+      "iconCode": "1x3",
+      "suma": 250,
+      "descriere": "Internet200  si Telefonie1000",
+      "id": 5
+    },
+    {
+      "serviciu": "TV150+Telefonie1000",
+      "iconCode": "2x3",
+      "descriere": "TV150 si Telefonie1000",
+      "suma": 350,
+      "id": 6
+    },
+    {
+      "serviciu": "TV150+Internet200+Telefonie1000",
+      "iconCode": "4",
+      "descriere": "TV150, Internet200 si Telefonie1000",
+      "suma": 600,
+      "id": 7
+    }
+  ]
+}

@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -73,20 +73,11 @@
 "use strict";
 
 
-__webpack_require__(12);
+__webpack_require__(15);
 module.exports = angular;
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports) {
-
-/* WEBPACK VAR INJECTION */(function(__webpack_amd_options__) {/* globals __webpack_amd_options__ */
-module.exports = __webpack_amd_options__;
-
-/* WEBPACK VAR INJECTION */}.call(exports, {}))
-
-/***/ }),
-/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -96,48 +87,122 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
-var _angularUiRouter = __webpack_require__(11);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var verificareCampuri = function () {
+	function verificareCampuri() {
+		_classCallCheck(this, verificareCampuri);
+	}
+
+	_createClass(verificareCampuri, [{
+		key: 'verificareSuma',
+		value: function verificareSuma(suma) {
+			var numberIsInteger = __webpack_require__(20);
+			var numberIsFloat = __webpack_require__(17);
+			var isNumeric = /^[-+]?(\d+|\d+\.\d*|\d*\.\d+)$/;
+			var verif = false;
+			//verificare null sau underfined 
+			if (!!suma) {
+				//verificare daca este numar
+				if (isNumeric.test(suma)) {
+					//verificare pentru numere intregi/reale/NaN
+					if ((numberIsInteger(Number(suma)) || numberIsFloat(Number(suma))) && Number(suma) !== 'NaN') {
+						//verificare pentru numere pozitive
+						if (Number(suma) > 0) {
+							verif = true;
+						}
+					}
+				}
+			}
+			return verif;
+		}
+	}, {
+		key: 'verificareString',
+		value: function verificareString(text) {
+			var verif = false;
+			if (!!text) {
+				verif = true;
+			}
+			return verif;
+		}
+	}]);
+
+	return verificareCampuri;
+}();
+
+exports.default = verificareCampuri;
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+/* WEBPACK VAR INJECTION */(function(__webpack_amd_options__) {/* globals __webpack_amd_options__ */
+module.exports = __webpack_amd_options__;
+
+/* WEBPACK VAR INJECTION */}.call(exports, {}))
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _angularUiRouter = __webpack_require__(14);
 
 var _angularUiRouter2 = _interopRequireDefault(_angularUiRouter);
 
-var _restangular = __webpack_require__(14);
+var _restangular = __webpack_require__(23);
 
 var _restangular2 = _interopRequireDefault(_restangular);
 
-var _controllerPrincipal = __webpack_require__(7);
+var _controllerPrincipal = __webpack_require__(8);
 
 var _controllerPrincipal2 = _interopRequireDefault(_controllerPrincipal);
 
-var _listaController = __webpack_require__(10);
+var _listaController = __webpack_require__(11);
 
 var _listaController2 = _interopRequireDefault(_listaController);
 
-var _cartController = __webpack_require__(5);
+var _cartController = __webpack_require__(6);
 
 var _cartController2 = _interopRequireDefault(_cartController);
 
-var _adminController = __webpack_require__(4);
+var _adminController = __webpack_require__(5);
 
 var _adminController2 = _interopRequireDefault(_adminController);
 
-var _creareController = __webpack_require__(8);
+var _creareController = __webpack_require__(9);
 
 var _creareController2 = _interopRequireDefault(_creareController);
 
-var _gestionareController = __webpack_require__(9);
+var _gestionareController = __webpack_require__(10);
 
 var _gestionareController2 = _interopRequireDefault(_gestionareController);
 
-var _comenziController = __webpack_require__(6);
+var _comenziController = __webpack_require__(7);
 
 var _comenziController2 = _interopRequireDefault(_comenziController);
+
+var _serviceComenzi = __webpack_require__(12);
+
+var _serviceComenzi2 = _interopRequireDefault(_serviceComenzi);
+
+var _serviceGestionare = __webpack_require__(13);
+
+var _serviceGestionare2 = _interopRequireDefault(_serviceGestionare);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // SERVICE
-
-exports.default = angular.module('modulParticular', ['ui.router', 'ngMessages', 'restangular']).controller('controllerPrincipal', _controllerPrincipal2.default).controller('listaController', _listaController2.default).controller('cartController', _cartController2.default).controller('adminController', _adminController2.default).controller('creareController', _creareController2.default).controller('gestionareController', _gestionareController2.default).controller('comenziController', _comenziController2.default).config(['$qProvider', '$urlRouterProvider', '$stateProvider', 'RestangularProvider', function ($qProvider, $urlRouterProvider, $stateProvider, RestangularProvider) {
-	RestangularProvider.setBaseUrl('');
+exports.default = angular.module('modulParticular', ['ui.router', 'ngMessages', 'restangular', 'ui.grid', 'ui.grid.edit']).controller('controllerPrincipal', _controllerPrincipal2.default).controller('listaController', _listaController2.default).controller('cartController', _cartController2.default).controller('adminController', _adminController2.default).controller('creareController', _creareController2.default).controller('gestionareController', _gestionareController2.default).controller('comenziController', _comenziController2.default).service('serviceComenzi', _serviceComenzi2.default).service('serviceGestionare', _serviceGestionare2.default).config(['$qProvider', '$urlRouterProvider', '$stateProvider', 'RestangularProvider', function ($qProvider, $urlRouterProvider, $stateProvider, RestangularProvider) {
+	RestangularProvider.setBaseUrl('http://localhost:3000');
 	$qProvider.errorOnUnhandledRejections(false);
 	$urlRouterProvider.otherwise('/lista');
 	$stateProvider.state('lista', {
@@ -162,7 +227,7 @@ exports.default = angular.module('modulParticular', ['ui.router', 'ngMessages', 
 // UI-VIEW CONTROLLER
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -172,7 +237,7 @@ var _angular = __webpack_require__(0);
 
 var _angular2 = _interopRequireDefault(_angular);
 
-var _introModulParticular = __webpack_require__(2);
+var _introModulParticular = __webpack_require__(3);
 
 var _introModulParticular2 = _interopRequireDefault(_introModulParticular);
 
@@ -183,7 +248,7 @@ _angular2.default.module('modulAplicatie', ['modulParticular']);
 _angular2.default.bootstrap(document, ['modulAplicatie']);
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -203,7 +268,7 @@ adminController.$inject = ['$scope'];
 exports.default = adminController;
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -223,7 +288,7 @@ cartController.$inject = ['$scope'];
 exports.default = cartController;
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -233,17 +298,166 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
+var _verificareCampuri = __webpack_require__(1);
+
+var _verificareCampuri2 = _interopRequireDefault(_verificareCampuri);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var comenziController = function comenziController($scope) {
+var comenziController = function comenziController($scope, serviceComenzi) {
 	_classCallCheck(this, comenziController);
+
+	$scope.oraseLista = ['Cj', 'TgM', 'Iasi', 'Tm', 'B'];
+	var obj = new _verificareCampuri2.default();
+
+	$scope.gridComenzi = {
+		enableColumnMenus: false,
+		enableSorting: true,
+		enableCellEditOnFocus: true,
+		enableFiltering: true,
+		onRegisterApi: function onRegisterApi(gridApi) {
+			$scope.gridApi = gridApi;
+		},
+		columnDefs: [{
+			name: 'id',
+			displayName: 'ID',
+			width: 70,
+			enableFiltering: false,
+			enableCellEdit: false
+		}, {
+			name: 'serviciu',
+			displayName: 'SERVICIU',
+			enableFiltering: true,
+			enableCellEdit: false
+		}, {
+			name: 'cant',
+			displayName: 'CANT',
+			width: 100,
+			enableFiltering: false,
+			enableCellEdit: false
+		}, {
+			name: 'suma',
+			displayName: 'SUMA',
+			width: 100,
+			enableFiltering: true,
+			enableCellEdit: false
+		}, {
+			name: 'status',
+			displayName: 'STATUS',
+			enableFiltering: true,
+			enableCellEdit: true
+		}, {
+			name: 'numeClient',
+			displayName: 'NUME',
+			enableFiltering: true,
+			enableCellEdit: false
+		}, {
+			name: 'prenumeClient',
+			displayName: 'PRENUME',
+			enableFiltering: true,
+			enableCellEdit: false
+		}, {
+			name: 'oras',
+			displayName: 'ORAŞ',
+			width: 60,
+			enableFiltering: true,
+			enableCellEdit: false
+		}, {
+			name: 'strada',
+			displayName: 'STRADĂ',
+			width: 160,
+			enableFiltering: true,
+			enableCellEdit: false
+		}, {
+			name: 'numar',
+			displayName: 'NUMĂR',
+			width: 70,
+			enableFiltering: true,
+			enableCellEdit: false
+		}, {
+			name: 'editare',
+			displayName: '',
+			cellTemplate: '<div class="ui-grid-cell-contents padding text-center"><button type="button" class="btn btn-primary btn-xs" ng-click="grid.appScope.editare(row)"><i class="fa fa-pencil"></i>Editeză</button></div>',
+			width: 90,
+			enableFiltering: false,
+			enableCellEdit: false,
+			cellClass: 'edit-cell'
+		}, {
+			name: 'stergere',
+			displayName: '',
+			cellTemplate: '<div class="ui-grid-cell-contents padding text-center"><button type="button" class="btn btn-danger btn-xs" ng-click="grid.appScope.stergere(row)"><i class="fa fa-eraser"></i>Şterge</button></div>',
+			width: 90,
+			enableFiltering: false,
+			enableCellEdit: false,
+			cellClass: 'delete-cell'
+		}]
+	};
+	// GET
+	$scope.servGetComenzi = function () {
+		serviceComenzi.getData().then(function (response) {
+			$scope.gridComenzi.data = response.data;
+		}, function () {
+			console.log("Eroare in comenziController - serviceGetComenzi");
+		});
+	};
+	// PUT
+	$scope.servPutComenzi = function (params, id) {
+		serviceComenzi.putData(params, id).then(function (response) {
+			console.log(response.data.id);
+			$scope.servGetComenzi();
+		}, function () {
+			console.log("Eroare in comenziController - servicePutComenzi");
+		});
+	};
+	// DELETE
+	$scope.servDeleteComenzi = function (id) {
+		swal({
+			title: "Eşti sigur(ă) că vrei să ştergi acest rând?",
+			text: "",
+			type: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#DD6B55",
+			confirmButtonText: "Da, sunt sigur(ă)!",
+			closeOnConfirm: false
+		}, function () {
+			swal("", "Rândul selectat a fost şters!", "success");
+			serviceComenzi.resursaDelete.id = id;
+			serviceComenzi.deleteData().then(function (data) {
+				if (typeof data !== 'string') {
+					console.log("Randul selectat a fost sters");
+					$scope.servGetComenzi();
+				} else {
+					console.log("Randul selectat nu a fost sters");
+				}
+			}, function () {
+				console.log("Eroare in comenziController - serviceDeleteComenzi");
+			});
+		});
+	};
+	$scope.editare = function (row) {
+		var params = {
+			"status": row.entity.status
+		};
+		if (obj.verificareString(params.status)) {
+			$scope.servPutComenzi(params, row.entity.id);
+		} else {
+			sweetAlert("Atenţie!", "Câmp necompletat!", "error");
+			$scope.servGetComenzi();
+		}
+	};
+	$scope.stergere = function (row) {
+		$scope.servDeleteComenzi(row.entity.id);
+	};
+	$scope.servGetComenzi();
 };
 
-comenziController.$inject = ['$scope'];
+comenziController.$inject = ['$scope', 'serviceComenzi'];
 exports.default = comenziController;
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -263,7 +477,7 @@ controllerPrincipal.$inject = ['$scope'];
 exports.default = controllerPrincipal;
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -283,7 +497,7 @@ creareController.$inject = ['$scope'];
 exports.default = creareController;
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -293,17 +507,139 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
+var _verificareCampuri = __webpack_require__(1);
+
+var _verificareCampuri2 = _interopRequireDefault(_verificareCampuri);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var gestionareController = function gestionareController($scope) {
+var gestionareController = function gestionareController($scope, serviceGestionare) {
 	_classCallCheck(this, gestionareController);
+
+	var obj = new _verificareCampuri2.default();
+
+	$scope.gridServicii = {
+		enableColumnMenus: false,
+		enableSorting: true,
+		enableCellEditOnFocus: true,
+		enableFiltering: true,
+		onRegisterApi: function onRegisterApi(gridApi) {
+			$scope.gridApi = gridApi;
+		},
+		columnDefs: [{
+			name: 'id',
+			displayName: 'ID',
+			width: 70,
+			enableFiltering: false,
+			enableCellEdit: false
+		}, {
+			name: 'serviciu',
+			displayName: 'SERVICIU',
+			enableFiltering: true,
+			enableCellEdit: true
+		}, {
+			name: 'iconCode',
+			displayName: 'ICON CODE',
+			width: 100,
+			enableFiltering: true,
+			enableCellEdit: true
+		}, {
+			name: 'suma',
+			displayName: 'SUMA',
+			width: 100,
+			enableFiltering: true,
+			enableCellEdit: true
+		}, {
+			name: 'descriere',
+			displayName: 'DESCRIERE',
+			enableFiltering: true,
+			enableCellEdit: true
+		}, {
+			name: 'editare',
+			displayName: '',
+			cellTemplate: '<div class="ui-grid-cell-contents padding text-center"><button type="button" class="btn btn-primary btn-xs" ng-click="grid.appScope.editare(row)"><i class="fa fa-pencil"></i>Editeză</button></div>',
+			width: 90,
+			enableFiltering: false,
+			enableCellEdit: false,
+			cellClass: 'edit-cell'
+		}, {
+			name: 'stergere',
+			displayName: '',
+			cellTemplate: '<div class="ui-grid-cell-contents padding text-center"><button type="button" class="btn btn-danger btn-xs" ng-click="grid.appScope.stergere(row)"><i class="fa fa-eraser"></i>Şterge</button></div>',
+			width: 90,
+			enableFiltering: false,
+			enableCellEdit: false,
+			cellClass: 'delete-cell'
+		}]
+	};
+	// GET
+	$scope.servGetServicii = function () {
+		serviceGestionare.getData().then(function (response) {
+			$scope.gridServicii.data = response.data;
+		}, function () {
+			console.log("Eroare in gestionareController - serviceGetServicii");
+		});
+	};
+	// PUT
+	$scope.servPutServicii = function (params, id) {
+		serviceGestionare.putData(params, id).then(function (response) {
+			console.log(response.data.id);
+		}, function () {
+			console.log("Eroare in gestionareController - servicePutServicii");
+		});
+	};
+	// DELETE
+	$scope.servDeleteServicii = function (id) {
+		swal({
+			title: "Eşti sigur(ă) că vrei să ştergi acest rând?",
+			text: "",
+			type: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#DD6B55",
+			confirmButtonText: "Da, sunt sigur(ă)!",
+			closeOnConfirm: false
+		}, function () {
+			swal("", "Rândul selectat a fost şters!", "success");
+			serviceGestionare.resursaDelete.id = id;
+			serviceGestionare.deleteData().then(function (data) {
+				if (typeof data !== 'string') {
+					console.log("Randul selectat a fost sters");
+					$scope.servGetServicii();
+				} else {
+					console.log("Randul selectat nu a fost sters");
+				}
+			}, function () {
+				console.log("Eroare in gestionareController - serviceDeleteServicii");
+			});
+		});
+	};
+	$scope.editare = function (row) {
+		var params = {
+			"serviciu": row.entity.serviciu,
+			"iconCode": row.entity.iconCode,
+			"descriere": row.entity.descriere
+		};
+		params.suma = Number(row.entity.suma);
+		if (obj.verificareSuma(params.suma) && obj.verificareString(params.serviciu) && obj.verificareString(params.iconCode) && obj.verificareString(params.descriere)) {
+			$scope.servPutServicii(params, row.entity.id);
+		} else {
+			sweetAlert("Atenţie!", "Eroare la introducerea datelor!", "error");
+			$scope.servGetServicii();
+		}
+	};
+	$scope.stergere = function (row) {
+		$scope.servDeleteServicii(row.entity.id);
+	};
+	$scope.servGetServicii();
 };
 
-gestionareController.$inject = ['$scope'];
+gestionareController.$inject = ['$scope', 'serviceGestionare'];
 exports.default = gestionareController;
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -323,7 +659,127 @@ listaController.$inject = ['$scope'];
 exports.default = listaController;
 
 /***/ }),
-/* 11 */
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var serviceComenzi = function () {
+    function serviceComenzi(Restangular) {
+        _classCallCheck(this, serviceComenzi);
+
+        //GET
+        this.resursaGet = Restangular.withConfig(function (RestangularConfigurer) {
+            RestangularConfigurer.setFullResponse(true);
+        }).all('/comenzi');
+        //PUT
+        this.resursaPut = Restangular.one("/comenzi");
+        // DELETE
+        this.resursaDelete = Restangular.one("/comenzi");
+    }
+
+    _createClass(serviceComenzi, [{
+        key: "getData",
+        value: function getData() {
+            return this.resursaGet.getList().then(function (response) {
+                return response;
+            });
+        }
+    }, {
+        key: "putData",
+        value: function putData(params, id) {
+            return this.resursaPut.customPUT(params, id).then(function (data) {
+                return data;
+            });
+        }
+    }, {
+        key: "deleteData",
+        value: function deleteData() {
+            return this.resursaDelete.remove().then(function (data) {
+                return data;
+            });
+        }
+    }]);
+
+    return serviceComenzi;
+}();
+
+exports.default = serviceComenzi;
+
+
+serviceComenzi.$inject = ['Restangular'];
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var serviceGestionare = function () {
+    function serviceGestionare(Restangular) {
+        _classCallCheck(this, serviceGestionare);
+
+        //GET
+        this.resursaGet = Restangular.withConfig(function (RestangularConfigurer) {
+            RestangularConfigurer.setFullResponse(true);
+        }).all('/servicii');
+        //PUT
+        this.resursaPut = Restangular.one("/servicii");
+        // DELETE
+        this.resursaDelete = Restangular.one("/servicii");
+    }
+
+    _createClass(serviceGestionare, [{
+        key: "getData",
+        value: function getData() {
+            return this.resursaGet.getList().then(function (response) {
+                return response;
+            });
+        }
+    }, {
+        key: "putData",
+        value: function putData(params, id) {
+            return this.resursaPut.customPUT(params, id).then(function (data) {
+                return data;
+            });
+        }
+    }, {
+        key: "deleteData",
+        value: function deleteData() {
+            return this.resursaDelete.remove().then(function (data) {
+                return data;
+            });
+        }
+    }]);
+
+    return serviceGestionare;
+}();
+
+exports.default = serviceGestionare;
+
+
+serviceGestionare.$inject = ['Restangular'];
+
+/***/ }),
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5145,7 +5601,7 @@ if (typeof module !== "undefined" && typeof exports !== "undefined" && module.ex
 })(window, window.angular);
 
 /***/ }),
-/* 12 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37886,7 +38342,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
 
 /***/ }),
-/* 13 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54658,7 +55114,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
   var _ = runInContext();
 
   // Some AMD build optimizers, like r.js, check for condition patterns like:
-  if ("function" == 'function' && _typeof(__webpack_require__(1)) == 'object' && __webpack_require__(1)) {
+  if ("function" == 'function' && _typeof(__webpack_require__(2)) == 'object' && __webpack_require__(2)) {
     // Expose Lodash on the global object to prevent errors when Lodash is
     // loaded by a script tag in the presence of an AMD loader.
     // See http://requirejs.org/docs/errors.html#mismatch for more details.
@@ -54683,10 +55139,84 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       root._ = _;
     }
 }).call(undefined);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(15), __webpack_require__(16)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(24), __webpack_require__(25)(module)))
 
 /***/ }),
-/* 14 */
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var numberIsFinite = __webpack_require__(18);
+
+module.exports = function (x) {
+	return numberIsFinite(x) && x !== (x | 0);
+};
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var numberIsNan = __webpack_require__(19);
+
+module.exports = Number.isFinite || function (val) {
+	return !(typeof val !== 'number' || numberIsNan(val) || val === Infinity || val === -Infinity);
+};
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = Number.isNaN || function (x) {
+	return x !== x;
+};
+
+/***/ }),
+/* 20 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var numberIsFinite = __webpack_require__(21);
+
+module.exports = Number.isInteger || function (x) {
+	return numberIsFinite(x) && Math.floor(x) === x;
+};
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var numberIsNan = __webpack_require__(22);
+
+module.exports = Number.isFinite || function (val) {
+	return !(typeof val !== 'number' || numberIsNan(val) || val === Infinity || val === -Infinity);
+};
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = Number.isNaN || function (x) {
+	return x !== x;
+};
+
+/***/ }),
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54703,7 +55233,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
   /* global define, require */
   // https://github.com/umdjs/umd/blob/master/templates/returnExports.js
   if (true) {
-    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(13), __webpack_require__(0)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(16), __webpack_require__(0)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -56061,7 +56591,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 });
 
 /***/ }),
-/* 15 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -56091,7 +56621,7 @@ try {
 module.exports = g;
 
 /***/ }),
-/* 16 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

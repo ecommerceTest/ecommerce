@@ -11,8 +11,10 @@ import gestionareController from './controller/gestionareController.js';
 import comenziController from './controller/comenziController.js';
 
 // SERVICE
+import serviceComenzi from './service/serviceComenzi.js';
+import serviceGestionare from './service/serviceGestionare.js';
 
-export default angular.module('modulParticular', ['ui.router','ngMessages','restangular'])
+export default angular.module('modulParticular', ['ui.router','ngMessages','restangular','ui.grid','ui.grid.edit'])
 .controller('controllerPrincipal', controllerPrincipal)
 .controller('listaController', listaController)
 .controller('cartController', cartController)
@@ -21,8 +23,11 @@ export default angular.module('modulParticular', ['ui.router','ngMessages','rest
 .controller('gestionareController', gestionareController)
 .controller('comenziController', comenziController)
 
+.service('serviceComenzi', serviceComenzi)
+.service('serviceGestionare', serviceGestionare)
+
 .config(['$qProvider','$urlRouterProvider','$stateProvider', 'RestangularProvider', function($qProvider, $urlRouterProvider,$stateProvider, RestangularProvider) {
-	RestangularProvider.setBaseUrl('');
+	RestangularProvider.setBaseUrl('http://localhost:3000');
 	$qProvider.errorOnUnhandledRejections(false);
 	$urlRouterProvider.otherwise('/lista');
 	$stateProvider

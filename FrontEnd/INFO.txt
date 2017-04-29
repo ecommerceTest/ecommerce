@@ -3,7 +3,7 @@
 C:\MAMP\htdocs\ecommerce\FrontEnd
 npm install
 
-C:\MAMP\htdocs\ecommerce\FrontEnd\mapa
+C:\MAMP\htdocs\ecommerce\FrontEnd
 npm run mapa
 
 ->Cmd
