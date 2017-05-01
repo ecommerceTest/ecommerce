@@ -1,5 +1,6 @@
 import uiRouter from 'angular-ui-router';
 import restangular from 'restangular';
+import angularSanitize from 'angular-sanitize';
 
 // UI-VIEW CONTROLLER
 import controllerPrincipal from './controller/controllerPrincipal.js';
@@ -14,7 +15,7 @@ import serviceComenzi from './service/serviceComenzi.js';
 import serviceGestionare from './service/serviceGestionare.js';
 import serviceAdministrator from './service/serviceAdministrator.js';
 
-export default angular.module('modulParticular', ['ui.router','ngMessages','restangular','ui.grid','ui.grid.edit'])
+export default angular.module('modulParticular', ['ui.router','ngMessages','restangular','ui.grid','ui.grid.edit', 'ui.bootstrap', 'ngAnimate', 'ngSanitize'])
 .controller('controllerPrincipal', controllerPrincipal)
 .controller('listaController', listaController)
 .controller('cartController', cartController)
