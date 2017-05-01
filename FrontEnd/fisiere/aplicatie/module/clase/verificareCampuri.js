@@ -30,4 +30,11 @@ export default class verificareCampuri{
 		}
 	return verif;
 	}
+	verificareLungString(l,text){
+		let verif = false;
+		if(l-text.length >= 0){
+			verif = true;
+		}
+	return verif;
+	}
 }

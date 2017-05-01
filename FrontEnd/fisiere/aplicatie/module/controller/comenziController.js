@@ -18,7 +18,7 @@ class comenziController {
 			{
 				name: 'id',
 				displayName: 'ID', 
-				width: 70,  
+				width: 50,  
 				enableFiltering: false,
 				enableCellEdit: false
 			},
@@ -45,6 +45,7 @@ class comenziController {
 			{
 				name: 'status',
 				displayName: 'STATUS',
+				rowHeight: 'auto',
 				enableFiltering: true,
 				enableCellEdit: true,
 			},
@@ -145,11 +146,17 @@ class comenziController {
         		});
         };
         $scope.editare = function(row){
+        	    $scope.arata = false;
 	        	let params = {
 	        		"status":row.entity.status,
 	        	};
 	        	if(obj.verificareString(params.status)){
-	        		$scope.servPutComenzi(params,row.entity.id);
+	        		if(obj.verificareLungString(12,params.status)){
+	        			$scope.servPutComenzi(params,row.entity.id);
+	        		}else{
+	        			$scope.arata = true;
+	        			$scope.servGetComenzi();
+	        		}
 	        	}else{
 	        		sweetAlert("Atenţie!","Câmp necompletat!", "error");
 	        		$scope.servGetComenzi();

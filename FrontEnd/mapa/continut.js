@@ -19706,6 +19706,15 @@ var verificareCampuri = function () {
 			}
 			return verif;
 		}
+	}, {
+		key: 'verificareLungString',
+		value: function verificareLungString(l, text) {
+			var verif = false;
+			if (l - text.length >= 0) {
+				verif = true;
+			}
+			return verif;
+		}
 	}]);
 
 	return verificareCampuri;
@@ -24786,7 +24795,7 @@ var comenziController = function comenziController($scope, serviceComenzi) {
 		columnDefs: [{
 			name: 'id',
 			displayName: 'ID',
-			width: 70,
+			width: 50,
 			enableFiltering: false,
 			enableCellEdit: false
 		}, {
@@ -24809,6 +24818,7 @@ var comenziController = function comenziController($scope, serviceComenzi) {
 		}, {
 			name: 'status',
 			displayName: 'STATUS',
+			rowHeight: 'auto',
 			enableFiltering: true,
 			enableCellEdit: true
 		}, {
@@ -24899,11 +24909,17 @@ var comenziController = function comenziController($scope, serviceComenzi) {
 		});
 	};
 	$scope.editare = function (row) {
+		$scope.arata = false;
 		var params = {
 			"status": row.entity.status
 		};
 		if (obj.verificareString(params.status)) {
-			$scope.servPutComenzi(params, row.entity.id);
+			if (obj.verificareLungString(12, params.status)) {
+				$scope.servPutComenzi(params, row.entity.id);
+			} else {
+				$scope.arata = true;
+				$scope.servGetComenzi();
+			}
 		} else {
 			sweetAlert("Atenţie!", "Câmp necompletat!", "error");
 			$scope.servGetComenzi();
@@ -24946,6 +24962,11 @@ var controllerPrincipal = function controllerPrincipal($scope, $window, $locatio
 		window.location.href = "#";
 		swal("Dezautentificare reuşită!", "", "success");
 	};
+	window.onload = function () {
+		if (!window.AUT) {
+			window.location.href = "#";
+		}
+	};
 };
 
 controllerPrincipal.$inject = ['$scope', '$window', '$location'];
@@ -24986,12 +25007,13 @@ var gestionareController = function gestionareController($scope, serviceGestiona
 		columnDefs: [{
 			name: 'id',
 			displayName: 'ID',
-			width: 70,
+			width: 50,
 			enableFiltering: false,
 			enableCellEdit: false
 		}, {
 			name: 'serviciu',
 			displayName: 'SERVICIU',
+			rowHeight: 'auto',
 			enableFiltering: true,
 			enableCellEdit: true
 		}, {
@@ -25009,6 +25031,7 @@ var gestionareController = function gestionareController($scope, serviceGestiona
 		}, {
 			name: 'descriere',
 			displayName: 'DESCRIERE',
+			rowHeight: 'auto',
 			enableFiltering: true,
 			enableCellEdit: true
 		}, {
@@ -25081,6 +25104,7 @@ var gestionareController = function gestionareController($scope, serviceGestiona
 		});
 	};
 	$scope.editare = function (row) {
+		$scope.arata = false;
 		var params = {
 			"serviciu": row.entity.serviciu,
 			"iconCode": row.entity.iconCode,
@@ -25088,7 +25112,12 @@ var gestionareController = function gestionareController($scope, serviceGestiona
 		};
 		params.suma = Number(row.entity.suma);
 		if (obj.verificareSuma(params.suma) && obj.verificareString(params.serviciu) && obj.verificareString(params.iconCode) && obj.verificareString(params.descriere)) {
-			$scope.servPutServicii(params, row.entity.id);
+			if (obj.verificareLungString(25, params.serviciu) && obj.verificareLungString(200, params.descriere)) {
+				$scope.servPutServicii(params, row.entity.id);
+			} else {
+				$scope.arata = true;
+				$scope.servGetServicii();
+			}
 		} else {
 			sweetAlert("Atenţie!", "Eroare la introducerea datelor!", "error");
 			$scope.servGetServicii();
@@ -25111,18 +25140,29 @@ var gestionareController = function gestionareController($scope, serviceGestiona
 	// Btn Adaugă serviciu
 	$scope.creareServNou = function () {
 		var totalElem = $scope.gridServicii.data.length;
-		var params = {
-			"serviciu": $scope.serviciu,
-			"iconCode": $scope.selectedOption.iconCode,
-			"descriere": $scope.descriere,
-			"suma": Number($scope.suma),
-			"id": totalElem + 1
-		};
-		if (obj.verificareSuma(params.suma)) {
-			$scope.servPostServicii(params);
-			location.reload();
+		var count = 0;
+		for (var i = 0; i < totalElem; i++) {
+			if ($scope.gridServicii.data[i].serviciu === $scope.serviciu) {
+				count++;
+			}
+		}
+		if (count === 0) {
+			var params = {
+				"serviciu": $scope.serviciu,
+				"iconCode": $scope.selectedOption.iconCode,
+				"descriere": $scope.descriere,
+				"suma": Number($scope.suma),
+				"id": totalElem + 1
+			};
+			if (obj.verificareSuma(params.suma)) {
+				$scope.servPostServicii(params);
+				location.reload();
+			} else {
+				sweetAlert("Atenţie!", "Aţi introdus o valoare incorectă pentru câmpul sumă!", "error");
+				$scope.cancel();
+			}
 		} else {
-			sweetAlert("Atenţie!", "Aţi introdus o valoare incorectă pentru câmpul sumă!", "error");
+			sweetAlert("Atenţie!", "Aţi introdus o dublură a serviciului:" + " " + $scope.serviciu, "error");
 			$scope.cancel();
 		}
 	};

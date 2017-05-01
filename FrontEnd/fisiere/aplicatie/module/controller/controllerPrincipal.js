@@ -12,6 +12,11 @@ class controllerPrincipal {
 			window.location.href = "#";
 			swal("Dezautentificare reuşită!", "", "success");
 		};
+		window.onload = function() {
+			if(!window.AUT){
+				window.location.href = "#";
+			}
+		};
 	}
 }
 controllerPrincipal.$inject = ['$scope','$window','$location'];

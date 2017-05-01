@@ -56,7 +56,7 @@
                   <div class="col-md-8 inputGroupContainer">
                     <div class="input-group">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-copy"></i></span>
-                      <input  name="descriere" placeholder="Descriere serviciu" class="form-control" data-ng-model="descriere" type="text" ng-trim="false" maxlength="35" required>
+                      <textarea  name="descriere" placeholder="Descriere serviciu" class="form-control" rows="3" data-ng-model="descriere" type="text" ng-trim="false" maxlength="200" required></textarea>
                     </div>
                     <!-- Validare camp Descriere -->
                     <div class="col-md-12 text-left" ng-messages="servForm.descriere.$error">

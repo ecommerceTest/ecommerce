@@ -59,13 +59,193 @@
       "numar": "20",
       "suma": 600,
       "id": 5
+    },
+    {
+      "serviciu": "Internet200",
+      "cant": 1,
+      "status": "asteptare",
+      "numeClient": "Ceban",
+      "prenumeClient": "Stela",
+      "oras": "Cj",
+      "strada": "str.Apelor",
+      "numar": "12",
+      "suma": 200,
+      "id": 6
+    },
+    {
+      "serviciu": "TV150",
+      "cant": 1,
+      "suma": 300,
+      "status": "asteptare",
+      "numeClient": "Ciudin",
+      "prenumeClient": "Adrian",
+      "oras": "TgM",
+      "strada": "str.Zambetelor",
+      "numar": "75",
+      "id": 7
+    },
+    {
+      "serviciu": "Telefonie1000",
+      "cant": 1,
+      "suma": 50,
+      "status": "asteptare",
+      "numeClient": "Muresan",
+      "prenumeClient": "Darius",
+      "oras": "Iasi",
+      "strada": "str. Parang",
+      "numar": "20",
+      "id": 8
+    },
+    {
+      "serviciu": "Internet200+Telefonie1000",
+      "cant": 1,
+      "status": "asteptare",
+      "numeClient": "Florea",
+      "prenumeClient": "Anita",
+      "oras": "Tm",
+      "strada": "str. Zambilelor",
+      "numar": "145A",
+      "suma": 450,
+      "id": 9
+    },
+    {
+      "serviciu": "Internet+TV+Telefonie",
+      "cant": 1,
+      "status": "asteptare",
+      "numeClient": "Gherman",
+      "prenumeClient": "Elena",
+      "oras": "B",
+      "strada": "str. Narciselor",
+      "numar": "20",
+      "suma": 600,
+      "id": 10
+    },
+    {
+      "serviciu": "Internet200",
+      "cant": 1,
+      "status": "asteptare",
+      "numeClient": "Ceban",
+      "prenumeClient": "Stela",
+      "oras": "Cj",
+      "strada": "str.Apelor",
+      "numar": "12",
+      "suma": 200,
+      "id": 11
+    },
+    {
+      "serviciu": "TV150",
+      "cant": 1,
+      "suma": 300,
+      "status": "asteptare",
+      "numeClient": "Ciudin",
+      "prenumeClient": "Adrian",
+      "oras": "TgM",
+      "strada": "str.Zambetelor",
+      "numar": "75",
+      "id": 12
+    },
+    {
+      "serviciu": "Telefonie1000",
+      "cant": 1,
+      "suma": 50,
+      "status": "asteptare",
+      "numeClient": "Muresan",
+      "prenumeClient": "Darius",
+      "oras": "Iasi",
+      "strada": "str. Parang",
+      "numar": "20",
+      "id": 13
+    },
+    {
+      "serviciu": "Internet200+Telefonie1000",
+      "cant": 1,
+      "status": "asteptare",
+      "numeClient": "Florea",
+      "prenumeClient": "Anita",
+      "oras": "Tm",
+      "strada": "str. Zambilelor",
+      "numar": "145A",
+      "suma": 450,
+      "id": 14
+    },
+    {
+      "serviciu": "Internet+TV+Telefonie",
+      "cant": 1,
+      "status": "asteptare",
+      "numeClient": "Gherman",
+      "prenumeClient": "Elena",
+      "oras": "B",
+      "strada": "str. Narciselor",
+      "numar": "20",
+      "suma": 600,
+      "id": 15
+    },
+    {
+      "serviciu": "Internet200",
+      "cant": 1,
+      "status": "asteptare",
+      "numeClient": "Ceban",
+      "prenumeClient": "Stela",
+      "oras": "Cj",
+      "strada": "str.Apelor",
+      "numar": "12",
+      "suma": 200,
+      "id": 16
+    },
+    {
+      "serviciu": "TV150",
+      "cant": 1,
+      "suma": 300,
+      "status": "asteptare",
+      "numeClient": "Ciudin",
+      "prenumeClient": "Adrian",
+      "oras": "TgM",
+      "strada": "str.Zambetelor",
+      "numar": "75",
+      "id": 17
+    },
+    {
+      "serviciu": "Telefonie1000",
+      "cant": 1,
+      "suma": 50,
+      "status": "asteptare",
+      "numeClient": "Muresan",
+      "prenumeClient": "Darius",
+      "oras": "Iasi",
+      "strada": "str. Parang",
+      "numar": "20",
+      "id": 18
+    },
+    {
+      "serviciu": "Internet200+Telefonie1000",
+      "cant": 1,
+      "status": "asteptare",
+      "numeClient": "Florea",
+      "prenumeClient": "Anita",
+      "oras": "Tm",
+      "strada": "str. Zambilelor",
+      "numar": "145A",
+      "suma": 450,
+      "id": 19
+    },
+    {
+      "serviciu": "Internet+TV+Telefonie",
+      "cant": 1,
+      "status": "asteptare",
+      "numeClient": "Gherman",
+      "prenumeClient": "Elena",
+      "oras": "B",
+      "strada": "str. Narciselor",
+      "numar": "20",
+      "suma": 600,
+      "id": 20
     }
   ],
   "servicii": [
     {
       "serviciu": "Internet200",
       "iconCode": "1",
-      "descriere": "Internet 200 Mb",
+      "descriere": "Internet 200 Mb Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis rhoncus erat. Integer id consectetur sapien. Suspendisse potenti. Donec sodales lectus nisi scelerisque.",
       "suma": 200,
       "id": 1
     },
@@ -117,6 +297,125 @@
       "descriere": "Internet500 si Telefonie2000",
       "suma": 300,
       "id": 8
+    },
+    {
+      "serviciu": "Internet200",
+      "iconCode": "1",
+      "descriere": "Internet 200 Mb",
+      "suma": 200,
+      "id": 9
+    },
+    {
+      "serviciu": "TV150",
+      "iconCode": "2",
+      "descriere": "TV 150 canale",
+      "suma": 300,
+      "id": 10
+    },
+    {
+      "serviciu": "Telefonie1000",
+      "iconCode": "3",
+      "suma": 50,
+      "descriere": "Telefonie 1000 min",
+      "id": 11
+    },
+    {
+      "serviciu": "Internet200+TV150",
+      "iconCode": "1x2",
+      "suma": 500,
+      "descriere": "TV 150 canale si Internet 200 Mb",
+      "id": 12
+    },
+    {
+      "serviciu": "Internet200+Telefonie1000",
+      "iconCode": "1x3",
+      "suma": 250,
+      "descriere": "Internet200  si Telefonie1000",
+      "id": 13
+    },
+    {
+      "serviciu": "TV150+Telefonie1000",
+      "iconCode": "2x3",
+      "descriere": "TV150 si Telefonie1000",
+      "suma": 350,
+      "id": 14
+    },
+    {
+      "serviciu": "TV150+Internet200+Telefonie1000",
+      "iconCode": "4",
+      "descriere": "TV150, Internet200 si Telefonie1000",
+      "suma": 600,
+      "id": 15
+    },
+    {
+      "serviciu": "Internet500+Telefonie2000",
+      "iconCode": "2x3",
+      "descriere": "Internet500 si Telefonie2000",
+      "suma": 300,
+      "id": 16
+    },
+    {
+      "serviciu": "Internet200",
+      "iconCode": "1",
+      "descriere": "Internet 200 Mb",
+      "suma": 200,
+      "id": 17
+    },
+    {
+      "serviciu": "TV150",
+      "iconCode": "2",
+      "descriere": "TV 150 canale",
+      "suma": 300,
+      "id": 18
+    },
+    {
+      "serviciu": "Telefonie1000",
+      "iconCode": "3",
+      "suma": 50,
+      "descriere": "Telefonie 1000 min",
+      "id": 19
+    },
+    {
+      "serviciu": "Internet200+TV150",
+      "iconCode": "1x2",
+      "suma": 500,
+      "descriere": "TV 150 canale si Internet 200 Mb",
+      "id": 20
+    },
+    {
+      "serviciu": "Internet200+Telefonie1000",
+      "iconCode": "1x3",
+      "suma": 250,
+      "descriere": "Internet200  si Telefonie1000",
+      "id": 21
+    },
+    {
+      "serviciu": "TV150+Telefonie1000",
+      "iconCode": "2x3",
+      "descriere": "TV150 si Telefonie1000",
+      "suma": 350,
+      "id": 22
+    },
+    {
+      "serviciu": "TV150+Internet200+Telefonie1000",
+      "iconCode": "4",
+      "descriere": "TV150, Internet200 si Telefonie1000",
+      "suma": 600,
+      "id": 23
+    },
+    {
+      "serviciu": "Internet500+Telefonie2000",
+      "iconCode": "2x3",
+      "descriere": "Internet500 si Telefonie2000",
+      "suma": 300,
+      "id": 24
+    },
+    {
+      "serviciu": "Internet200+Telefonie1000",
+      "iconCode": "1x3",
+      "descriere": "Internet200  si Telefonie1000 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis rhoncus erat. Integer id consectetur sapien. Suspendisse potenti. Donec sodales lectus nisi scelerisque.",
+      "suma": 250,
+      "id": 25
     }
   ],
   "administrator": [

@@ -84,13 +84,36 @@ li.active>a{
 /*FINAL FOOTER*/
 /*UI-GRID*/
 div.ui-grid-cell-contents.ng-binding.ng-scope,
-span.ui-grid-header-cell-label.ng-binding,
+span.ui-grid-header-cell-label.ng-binding{
+    font-size: 12px;
+    text-align: justify;
+    display: inline-block;
+    vertical-align: middle;
+}
 div.ui-grid-cell-contents.ui-grid-header-cell-primary-focus{
     font-size: 12px;
     text-align: center;
 }
 .grid{
-    height: 550px;
+    height: 600px;
+}
+[ui-grid-row] {
+display: table-row;
+}
+
+.ui-grid-row, .ui-grid-cell {
+height: auto!important;
+}
+
+.ui-grid-cell {
+float: none;
+display: table-cell;
+}
+
+.ui-grid-header-cell, .ui-grid-cell-contents {
+white-space: normal;
+padding: 2px;
+word-break: break-word;
 }
 /*FINAL UI-GRID*/
  legend{

@@ -17,13 +17,14 @@ class gestionareController {
 			{
 				name: 'id',
 				displayName: 'ID', 
-				width: 70,  
+				width: 50,  
 				enableFiltering: false,
 				enableCellEdit: false
 			},
 			{
 				name: 'serviciu',
 				displayName: 'SERVICIU',
+				rowHeight: 'auto',
 				enableFiltering: true,
 				enableCellEdit: true,
 			},
@@ -44,6 +45,7 @@ class gestionareController {
 			{
 				name: 'descriere',
 				displayName: 'DESCRIERE',
+				rowHeight: 'auto',
 				enableFiltering: true,
 				enableCellEdit: true,
 			},
@@ -121,6 +123,7 @@ class gestionareController {
 	        	});	
         };
         $scope.editare = function(row){
+        	    $scope.arata = false;
               	let params = {
               		"serviciu":row.entity.serviciu,
               		"iconCode":row.entity.iconCode,
@@ -128,7 +131,12 @@ class gestionareController {
               	};
               	params.suma=Number(row.entity.suma);
               	if(obj.verificareSuma(params.suma) && obj.verificareString(params.serviciu) && obj.verificareString(params.iconCode) && obj.verificareString(params.descriere)){
-              		$scope.servPutServicii(params,row.entity.id);
+              		if(obj.verificareLungString(25,params.serviciu) && obj.verificareLungString(200,params.descriere)){
+              			$scope.servPutServicii(params,row.entity.id);
+	        		}else{
+	        			$scope.arata = true;
+	        			$scope.servGetServicii();
+	        		}
               	}else{
               		sweetAlert("Atenţie!","Eroare la introducerea datelor!", "error");
               		$scope.servGetServicii();
@@ -151,7 +159,14 @@ class gestionareController {
 		// Btn Adaugă serviciu
 		$scope.creareServNou = function(){
 			let totalElem = $scope.gridServicii.data.length;
-			let params = {
+			let count = 0;
+			for(let i=0;i<totalElem;i++){
+				if($scope.gridServicii.data[i].serviciu === $scope.serviciu){
+					count++;
+				}
+			}
+			if(count === 0){
+				let params = {
               		"serviciu":$scope.serviciu,
               		"iconCode":$scope.selectedOption.iconCode,
               		"descriere":$scope.descriere,
@@ -165,6 +180,10 @@ class gestionareController {
               		sweetAlert("Atenţie!","Aţi introdus o valoare incorectă pentru câmpul sumă!", "error");
               		$scope.cancel();
               	} 
+			}else{
+				sweetAlert("Atenţie!","Aţi introdus o dublură a serviciului:" + " " + $scope.serviciu, "error");
+				$scope.cancel();
+			}
 		};
 	}
 }
