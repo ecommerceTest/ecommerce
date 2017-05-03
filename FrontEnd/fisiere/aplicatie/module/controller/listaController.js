@@ -13,10 +13,16 @@ class listaController {
 		 	});
 		 };
 		$scope.servGetServicii();
-  		$scope.viewby = 4;
+
+  	$scope.viewby = 4;
 		$scope.currentPage = 1;
 		$scope.itemsPerPage = $scope.viewby;
-        $scope.arr=[];
+
+    $scope.detaliiFunc = function($index){
+      $scope.modalDetalii = $scope.info[$index+$scope.viewby*($scope.currentPage-1)].descriere;
+    };
+
+    $scope.arr=[];
   		$scope.pageChanged = function() {
   			console.log('Page changed to: ' + $scope.currentPage);
   		};
@@ -26,13 +32,35 @@ class listaController {
   		}else{
   			$scope.arr = JSON.parse(val);
   		}
+  		function unic(arr, prop) {
+  			return arr.map(function(e) { return e[prop]; }).filter(function(e,i,a){
+  				return i === a.indexOf(e);
+  			});
+  		}
+  		let f = function(sir1,sir2){
+  			let arr=[];
+  			for(let i=0;i<sir1.length;i++){
+  				for(let j=0;j<sir2.length;j++){
+  					if(sir1[i] === sir2[j].serviciu){
+  						arr.push(sir2[j]);
+  						break;
+  					}
+  				}
+  			}
+  			for(let k=0;k<arr.length;k++){
+  				arr[k].contor = 1;
+  			}
+  			return arr;
+  		};
   		$scope.adaugaServicii = function($ind){
   			$scope.arrFin = [];
   			let index = $ind + $scope.viewby*($scope.currentPage-1);
   			$scope.arrFin.push($scope.info[index]);
   			$scope.arr = $scope.arr.concat($scope.arrFin);
-  			console.log("adaugaServicii: ",$scope.arr);
-  			window.localStorage.setItem('local',JSON.stringify($scope.arr));
+  			let servicii = unic($scope.arr,'serviciu');
+  			$scope.servicii = f(servicii,$scope.arr);
+  			console.log("adaugaServicii: ",$scope.servicii);
+  			window.localStorage.setItem('local',JSON.stringify($scope.servicii));
   		}; 
 	}
 }

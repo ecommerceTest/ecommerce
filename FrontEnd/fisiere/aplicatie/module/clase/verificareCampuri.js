@@ -37,4 +37,14 @@ export default class verificareCampuri{
 		}
 	return verif;
 	}
+	verificareCampuriComanda(text){
+		let pattern = /^[^0-9\#\$\@\+]*$/;
+		let textReturnat;
+		if(text.match(pattern)) {
+			textReturnat = text.replace(/([~!@#$%^&*()_+=`{}\[\]\|\\:;'<>,.\/? ])+/g, '');
+		}
+		else{
+			textReturnat='';
+		}
+	}
 }

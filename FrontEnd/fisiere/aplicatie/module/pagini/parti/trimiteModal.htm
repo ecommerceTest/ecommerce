@@ -1,0 +1,102 @@
+<!-- Modal -->
+<div  ng-controller = "cartController">
+  <div class="modal fade" id="trimite" tabindex="-1" role="dialog" aria-labelledby="trimiteLabel" aria-hidden="true">
+    <div class="modal-dialog custom-class">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="textLegenda" id="trimiteLabel">Trimite comanda</h4>
+        </div>
+        <div class="modal-body">
+              <form class="form-horizontal" name="comandaForm" novalidate>
+              <fieldset>
+                <!-- Text input Nume Client-->
+                <div class="form-group">
+                  <label class="col-md-3 control-label">Nume Client</label>
+                  <div class="col-md-8 inputGroupContainer">
+                    <div class="input-group">
+                      <span class="input-group-addon"></span>
+                      <input  name="nume" placeholder="Nume client" class="form-control" ng-model="nume" type="text" ng-trim="false" maxlength="25" required>
+                    </div>
+                   <!-- Validare camp Nume Client- -->
+                    <div class="col-md-12 text-left" ng-messages="comandaForm.nume.$error">
+                      <div ng-message="required" class="eroare">* Vă rugăm să completaţi câmpul nume client</div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Text input Nume Client-->
+                <div class="form-group">
+                  <label class="col-md-3 control-label">Prenume Client</label>
+                  <div class="col-md-8 inputGroupContainer">
+                    <div class="input-group">
+                      <span class="input-group-addon"></span>
+                      <input  name="prenume" placeholder="Prenume client" class="form-control" ng-model="prenume" type="text" ng-trim="false" maxlength="25" required>
+                    </div>
+                   <!-- Validare camp Nume Client- -->
+                    <div class="col-md-12 text-left" ng-messages="comandaForm.prenume.$error">
+                      <div ng-message="required" class="eroare">* Vă rugăm să completaţi câmpul prenume client</div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Text input Oras-->
+                <div class="form-group">
+                  <label class="col-md-3 control-label">Oraş</label>
+                  <div class="col-md-8">
+                    <form>
+                        <select class="form-control" data-ng-options="item for item in oraseLista" data-ng-model="selectedOption">
+                          <option>{{item}}</option>
+                        </select>
+                    </form>
+                  </div>
+                </div>
+                <!-- Text input Strada-->
+                <div class="form-group">
+                  <label class="col-md-3 control-label">Stradă</label>
+                  <div class="col-md-8 inputGroupContainer">
+                    <div class="input-group">
+                      <span class="input-group-addon"></span>
+                      <input  name="strada" placeholder="Stradă" class="form-control" ng-model="strada" type="text" ng-trim="false" maxlength="25" required>
+                    </div>
+                   <!-- Validare camp Strada- -->
+                    <div class="col-md-12 text-left" ng-messages="comandaForm.strada.$error">
+                      <div ng-message="required" class="eroare">* Vă rugăm să completaţi câmpul stradă</div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Text input Numar-->
+                <div class="form-group">
+                  <label class="col-md-3 control-label">Număr</label>
+                  <div class="col-md-8 inputGroupContainer">
+                    <div class="input-group">
+                      <span class="input-group-addon"></span>
+                      <input  name="numar" placeholder="Număr" class="form-control" ng-model="numar" type="text" ng-trim="false" maxlength="8" required>
+                    </div>
+                   <!-- Validare camp Numar- -->
+                    <div class="col-md-12 text-left" ng-messages="comandaForm.numar.$error">
+                      <div ng-message="required" class="eroare">* Vă rugăm să completaţi câmpul număr</div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Button -->
+                <div class="form-group">
+                  <label class="col-md-3 control-label"></label>
+                  <div class="col-md-8">
+                    <div class="aliniereBtn text-right">
+                      <a type="button" ng-click = "cancel()">Anulează</a>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </form>
+        </div>
+        <div class="modal-footer">
+        <div class="col-md-12 text-right">
+              <button ng-click="trimite()" data-dismiss="modal" class="btn btn-primary" type="submit" ng-disabled="comandaForm.$invalid">Trimite comanda</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Închide</button>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

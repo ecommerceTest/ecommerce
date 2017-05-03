@@ -145,4 +145,11 @@ word-break: break-word;
         font-size: 9px;
     }
 }
+/*Cosul de cumparaturi*/
+@media screen and (max-width: 650px) {
+    div.col-xs-3.col-sm-3.col-md-3.text-center.ng-binding,
+    div.col-xs-2.col-sm-2.col-md-2.text-center.ng-binding{
+        font-size: 10px;
+    }
+}
 

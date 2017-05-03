@@ -3,20 +3,28 @@
 	 		<div class="col-md-12">
 	 		  <h4 class="textLegenda" style="margin-bottom: 50px;">Coşul de cumpărături</h4>
 	 			<ul class="list-group">
-	 				<li class="list-group-item row" ng-repeat="a in arrLocal">
+	 				<li class="list-group-item row" ng-repeat="a in arrLocal track by $index">
 	 					<div class="col-xs-3 col-sm-3 col-md-3 text-center">{{a.serviciu}}</div>
 	 					<div class="col-xs-3 col-sm-3 col-md-3 text-center">{{a.suma}}</div>
 	 					<div class="col-xs-2 col-sm-2 col-md-2 text-center">
-	 						<button ng-click="">+</button>
+	 						<button ng-init="cant=1" ng-click="cant=cant+1;inc($index, cant);">+</button>
 	 					</div>
 	 					<div class="col-xs-2 col-sm-2 col-md-2 text-center">
-	 						cant
+	 						{{cant}}
 	 					</div>
 	 					<div class="col-xs-2 col-sm-2 col-md-2 text-center">
-	 						<button ng-click="">-</button>
+	 						<button ng-click="cant=cant-1;dec($index,cant);" ng-show = "cant>0">-</button>
 	 					</div>
 	 				</li>
 	 			</ul>
 	 		</div>
 	 	</div>
+	 	<div class="row" ng-if="ascuns">
+	 		<div class="col-md-12 text-center">
+	 			<button class="btn btn-primary" type="submit"><span data-toggle="modal" data-target="#trimite">Continuă</span></button>
+	 			<button ng-click="stergeTot()" class="btn btn-danger" type="submit">Şterge tot</button>
+	 		</div>
+	 	</div>
+	 <!-- Modal Trimite Comanda -->
+  <div ng-include="'../fisiere/aplicatie/module/pagini/parti/trimiteModal.htm'"></div>
 </div>
