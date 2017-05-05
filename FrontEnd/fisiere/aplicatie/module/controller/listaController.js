@@ -1,5 +1,7 @@
 class listaController {
 	constructor($scope,$window,serviceGestionare){
+    let sortBy = require('sort-by');
+   
 		$scope.info = [];
 		 // GET
 		 $scope.servGetServicii = function(){
@@ -12,8 +14,19 @@ class listaController {
 		 		console.log("Eroare in listaController - serviceGetServicii");
 		 	});
 		 };
-		$scope.servGetServicii();
+     $scope.servGetServicii();
 
+     $scope.RadioChange = function (rdo) {
+      $scope.radio1 = rdo;
+      $scope.radio2 = rdo;
+      if($scope.radio1 == 'CRESC'){
+       $scope.info.sort(sortBy('suma'));
+     }
+     if($scope.radio2 == 'DESCRESC'){
+       $scope.info.sort(sortBy('-suma'));
+     }
+    };
+		
   	$scope.viewby = 4;
 		$scope.currentPage = 1;
 		$scope.itemsPerPage = $scope.viewby;
@@ -24,7 +37,7 @@ class listaController {
 
     $scope.arr=[];
   		$scope.pageChanged = function() {
-  			console.log('Page changed to: ' + $scope.currentPage);
+  			console.log('Pagina: ' + $scope.currentPage);
   		};
   		let val = window.localStorage.getItem('local');
   		if(!val){
@@ -47,9 +60,6 @@ class listaController {
   					}
   				}
   			}
-  			for(let k=0;k<arr.length;k++){
-  				arr[k].contor = 1;
-  			}
   			return arr;
   		};
   		$scope.adaugaServicii = function($ind){
@@ -59,8 +69,9 @@ class listaController {
   			$scope.arr = $scope.arr.concat($scope.arrFin);
   			let servicii = unic($scope.arr,'serviciu');
   			$scope.servicii = f(servicii,$scope.arr);
-  			console.log("adaugaServicii: ",$scope.servicii);
   			window.localStorage.setItem('local',JSON.stringify($scope.servicii));
+        let dt = moment().format("DD/MM/YYYY hh:mm:ss a");
+        window.localStorage.setItem('time',dt);
   		}; 
 	}
 }

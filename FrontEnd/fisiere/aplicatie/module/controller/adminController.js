@@ -22,7 +22,7 @@ class adminController {
 					$scope.cancel();
 					setTimeout(function () {
 						$window.location.reload();
-					}, 1000);
+					}, 1200);
 				}else{
 					sweetAlert("Atenţie!", "Introduceţi credenţiale valide", "error");
 					$scope.cancel();

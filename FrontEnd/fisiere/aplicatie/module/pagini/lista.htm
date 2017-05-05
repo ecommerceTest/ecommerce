@@ -1,20 +1,26 @@
  <div class="container">
  	<div class="row">
+ 	 	<h4 class="textLegenda" style="margin-bottom: 25px;">Listă Servicii</h4> 
+ 	  <div class="col-md-12 text-center"  style="margin-bottom: 50px;">
+ 			Sumă crescătoare <input type="radio" ng-model="radio1" value="CRESC" ng-change="RadioChange(radio1)" />
+ 			Sumă descrescătoare <input type="radio" ng-model="radio2" value="DESCRESC" ng-change="RadioChange(radio2)" />
+ 		</div>
+ 	</div>
+ 	<div class="row">
  		<div class="col-md-12">
- 		  <h4 class="textLegenda" style="margin-bottom: 50px;">Listă Servicii</h4>
  			<div ng-repeat="i in info.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage)) track by $index">
  			  <div class="media">
 						<div class="col-sm-8 col-md-8">
 							<div class="col-sm-4 col-md-4 text-center">
-								<span><i class="fa fa-television fa-1x"></i></span>
-								<span><i class="fa fa-wifi fa-1x"></i></span>
-								<span><i class="fa fa-phone fa-1x"></i></span>
+								<span ng-if="i.iconCode==='2' || i.iconCode==='1x2' || i.iconCode==='2x3' || i.iconCode==='4'"><i class="fa fa-television fa-1x"></i></span>
+								<span ng-if="i.iconCode==='1' || i.iconCode==='1x2' || i.iconCode==='1x3' || i.iconCode==='4'"><i class="fa fa-wifi fa-1x"></i></span>
+								<span ng-if="i.iconCode==='3' || i.iconCode==='1x3' || i.iconCode==='2x3' || i.iconCode==='4'"><i class="fa fa-phone fa-1x"></i></span>
 							</div>
 							<div class="col-sm-6 col-md-6 text-center">
 								<h4 class="media-heading  text-center">{{i.serviciu}}</h4>
 							</div>
 							<div class="col-sm-2 col-md-2 text-center">
-								 <span>{{i.suma}}</span>
+								 <span>{{i.suma | currency : " "}} Ron</span>
 							</div>
 						</div>
 						<div class="col-sm-4 col-md-4 text-center">
@@ -34,6 +40,7 @@
  		<ul uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" class="pagination-sm" items-per-page="itemsPerPage" previous-text="Precedent" next-text="Următor"></ul>
  	</div>
  </div>
+
 
 
 

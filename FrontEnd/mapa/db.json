@@ -44,7 +44,7 @@
       "prenumeClient": "Anita",
       "oras": "Tm",
       "strada": "str. Zambilelor",
-      "numar": "145A",
+      "numar": "145",
       "suma": 450,
       "id": 4
     },
@@ -104,7 +104,7 @@
       "prenumeClient": "Anita",
       "oras": "Tm",
       "strada": "str. Zambilelor",
-      "numar": "145A",
+      "numar": "145",
       "suma": 450,
       "id": 9
     },
@@ -164,7 +164,7 @@
       "prenumeClient": "Anita",
       "oras": "Tm",
       "strada": "str. Zambilelor",
-      "numar": "145A",
+      "numar": "145",
       "suma": 450,
       "id": 14
     },
@@ -224,7 +224,7 @@
       "prenumeClient": "Anita",
       "oras": "Tm",
       "strada": "str. Zambilelor",
-      "numar": "145A",
+      "numar": "145",
       "suma": 450,
       "id": 19
     },
@@ -239,14 +239,50 @@
       "numar": "20",
       "suma": 600,
       "id": 20
+    },
+    {
+      "serviciu": "Internet200",
+      "cant": 2,
+      "suma": 250,
+      "status": "asteptare",
+      "numeClient": "Ceban",
+      "prenumeClient": "Stela",
+      "oras": "Cj",
+      "strada": "Parang",
+      "numar": "37",
+      "id": 21
+    },
+    {
+      "serviciu": "TV150",
+      "cant": 3,
+      "suma": 300,
+      "status": "asteptare",
+      "numeClient": "Ceban",
+      "prenumeClient": "Stela",
+      "oras": "Cj",
+      "strada": "Parang",
+      "numar": "37",
+      "id": 22
+    },
+    {
+      "serviciu": "Telefonie1000",
+      "cant": 2,
+      "suma": 50,
+      "status": "asteptare",
+      "numeClient": "Ceban",
+      "prenumeClient": "Stela",
+      "oras": "Cj",
+      "strada": "Parang",
+      "numar": "37",
+      "id": 23
     }
   ],
   "servicii": [
     {
       "serviciu": "Internet200",
       "iconCode": "1",
-      "descriere": "Internet 200 Mb Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis rhoncus erat. Integer id consectetur sapien. Suspendisse potenti. Donec sodales lectus nisi scelerisque.",
-      "suma": 200,
+      "descriere": "Internet 200 Mb",
+      "suma": 250,
       "id": 1
     },
     {

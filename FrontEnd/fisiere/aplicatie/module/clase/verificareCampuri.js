@@ -46,5 +46,14 @@ export default class verificareCampuri{
 		else{
 			textReturnat='';
 		}
+		return textReturnat;
+	}
+	verificareCampNrComanda(nr){
+		let pattern = /[0-9]/g;
+		if(nr.match(pattern)){
+  			return true;
+		}else{
+			return false;
+		}
 	}
 }

@@ -14,6 +14,7 @@ import comenziController from './controller/comenziController.js';
 import serviceComenzi from './service/serviceComenzi.js';
 import serviceGestionare from './service/serviceGestionare.js';
 import serviceAdministrator from './service/serviceAdministrator.js';
+import serviceTrimiteComanda from './service/serviceTrimiteComanda.js';
 
 export default angular.module('modulParticular', ['ui.router','ngMessages','restangular','ui.grid','ui.grid.edit', 'ui.bootstrap', 'ngAnimate', 'ngSanitize'])
 .controller('controllerPrincipal', controllerPrincipal)
@@ -26,6 +27,7 @@ export default angular.module('modulParticular', ['ui.router','ngMessages','rest
 .service('serviceComenzi', serviceComenzi)
 .service('serviceGestionare', serviceGestionare)
 .service('serviceAdministrator', serviceAdministrator)
+.service('serviceTrimiteComanda', serviceTrimiteComanda)
 
 .config(['$qProvider','$urlRouterProvider','$stateProvider', 'RestangularProvider', function($qProvider, $urlRouterProvider,$stateProvider, RestangularProvider) {
 	RestangularProvider.setBaseUrl('http://localhost:3000');

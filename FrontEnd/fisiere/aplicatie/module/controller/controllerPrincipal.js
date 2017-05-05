@@ -17,10 +17,6 @@ class controllerPrincipal {
 				window.location.href = "#";
 			}
 		};
-		window.onbeforeunload = function() {
-			localStorage.removeItem('local'); 
-			return '';
-		};
 	}
 }
 controllerPrincipal.$inject = ['$scope','$window','$location'];
