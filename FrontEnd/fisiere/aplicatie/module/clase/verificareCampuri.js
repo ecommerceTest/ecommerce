@@ -38,10 +38,10 @@ export default class verificareCampuri{
 	return verif;
 	}
 	verificareCampuriComanda(text){
-		let pattern = /^[^0-9\#\$\@\+]*$/;
+		let pattern = /^[a-zA-Z\d\-_.,\s]+$/;
 		let textReturnat;
-		if(text.match(pattern)) {
-			textReturnat = text.replace(/([~!@#$%^&*()_+=`{}\[\]\|\\:;'<>,.\/? ])+/g, '');
+		if(text.match(pattern) && !this.verificareCampNrComanda(text)) {
+			textReturnat = text;
 		}
 		else{
 			textReturnat='';

@@ -3,7 +3,7 @@ import verificareCampuri from '../clase/verificareCampuri.js';
 class comenziController {
 	constructor($scope,serviceComenzi){ 
         
-        $scope.oraseLista = ['Cj','TgM','Iasi','Tm','B'];
+        $scope.oraseLista = ['CJ','SM','BV','MS','B'];
         let obj = new verificareCampuri();
 
 		$scope.gridComenzi = {
@@ -25,6 +25,7 @@ class comenziController {
 			{
 				name: 'serviciu',
 				displayName: 'SERVICIU',
+				width: 160,
 				enableFiltering: true,
 				enableCellEdit: false,
 			},
@@ -46,19 +47,21 @@ class comenziController {
 				name: 'status',
 				displayName: 'STATUS',
 				rowHeight: 'auto',
-				width: 140,
+				width: 120,
 				enableFiltering: true,
 				enableCellEdit: true,
 			},
 			{
 				name: 'numeClient',
 				displayName: 'NUME',
+				width: 150,
 				enableFiltering: true,
 				enableCellEdit: false,
 			},
 			{
 				name: 'prenumeClient',
 				displayName: 'PRENUME',
+				width: 150,
 				enableFiltering: true,
 				enableCellEdit: false,
 			},
@@ -79,14 +82,14 @@ class comenziController {
 			{
 				name: 'numar',
 				displayName: 'NUMĂR',
-				width: 100,
+				width: 90,
 				enableFiltering: true,
 				enableCellEdit: false,
 			},
 			{
 				name:'editare',
 				displayName:'',
-				cellTemplate: '<div class="ui-grid-cell-contents padding text-center"><button type="button" class="btn btn-primary btn-xs" ng-click="grid.appScope.editare(row)"><i class="fa fa-pencil"></i>Editeză</button></div>',
+				cellTemplate: '<div class="ui-grid-cell-contents padding text-center"><button type="button" class="btn btn-primary btn-xs" ng-click="grid.appScope.editare(row)"><i class="fa fa-pencil"></i>Salvează</button></div>',
 				width: 90,    
 				enableFiltering: false,
 				enableCellEdit: false,
@@ -149,7 +152,16 @@ class comenziController {
         $scope.editare = function(row){
         	    $scope.arata = false;
 	        	let params = {
+	        		"serviciu":row.entity.serviciu,
+	        		"cant":row.entity.cant,
 	        		"status":row.entity.status,
+	        		"numeClient":row.entity.numeClient,
+	        		"prenumeClient":row.entity.prenumeClient,
+	        		"oras":row.entity.oras,
+	        		"strada":row.entity.strada,
+	        		"numar":row.entity.numar,
+	        		"suma":row.entity.suma,
+	        		"id":row.entity.id,
 	        	};
 	        	if(obj.verificareString(params.status)){
 	        		if(obj.verificareLungString(12,params.status)){

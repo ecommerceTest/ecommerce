@@ -2,9 +2,9 @@ import verificareCampuri from '../clase/verificareCampuri.js';
 
 class cartController {
 	constructor($scope,$window,serviceTrimiteComanda){
-		$scope.oraseLista = ['Cj','TgM','Iasi','Tm','B'];
+		$scope.oraseLista = ['CJ','SM','BV','MS','B'];
 		$scope.selectedOption = $scope.oraseLista[0];
-
+       
         let obj = new verificareCampuri();
 
         let val = window.localStorage.getItem('local');
@@ -28,11 +28,13 @@ class cartController {
         	let x = JSON.parse(window.localStorage.getItem('local'));
         	x[$index].cant = cant;
         	window.localStorage.setItem('local',JSON.stringify(x));
+            $scope.totalSuma=totalSumaCart();
         };
         $scope.dec = function($index, cant){
         	let x = JSON.parse(window.localStorage.getItem('local'));
         	x[$index].cant = cant;
         	window.localStorage.setItem('local',JSON.stringify(x));
+            $scope.totalSuma=totalSumaCart();
         };
         if(!$scope.arrLocal){
         	$scope.ascuns = false;
@@ -43,9 +45,12 @@ class cartController {
        $scope.servPostServicii = function(params){
 		       	serviceTrimiteComanda.postData(params).then(function(response) {
 		       		if(response){
+                        swal("Comanda a fost trimisă cu succes!", "", "success");
 		       			localStorage.removeItem('local'); 
 		       			window.location.href = "#";
-		       		}
+		       		}else{
+                        sweetAlert("Atenţie!","Comanda nu a fost trimisă cu succes!", "error");
+                    }
 
 		       	}, function () {
 		       		console.log("Eroare in cartController - servicePostServicii");
@@ -68,13 +73,13 @@ class cartController {
             	let params = {
             		"serviciu": $scope.arrLocal[i].serviciu,
             		"cant": $scope.arrLocal[i].cant,
-            		"suma": $scope.arrLocal[i].suma,
             		"status": "asteptare",
             		"numeClient":  $scope.nume,
             		"prenumeClient": $scope.prenume,
             		"oras": $scope.selectedOption,
             		"strada": $scope.strada,
-            		"numar": $scope.numar
+            		"numar": $scope.numar,
+                    "suma": $scope.arrLocal[i].suma,
             	};
             	$scope.servPostServicii(params);
                 console.log(params);
@@ -104,6 +109,21 @@ class cartController {
 			}
 			return newArr;
 		};
+        let totalSumaCart = function(){
+            let total;
+            if(!window.localStorage.getItem('local')){
+                total = 0;
+                return total;
+            }else{
+                  let arrTotal = JSON.parse(window.localStorage.getItem('local'));
+                  total = 0;
+                  for(let i = 0; i<arrTotal.length;i++){
+                        total = total+arrTotal[i].suma * arrTotal[i].cant;
+                    }
+                }
+                return total;
+        };
+        $scope.totalSuma=totalSumaCart();
 	}
 }
 cartController.$inject = ['$scope','$window','serviceTrimiteComanda'];

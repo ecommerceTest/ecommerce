@@ -97,6 +97,11 @@ div.ui-grid-cell-contents.ui-grid-header-cell-primary-focus{
 .grid{
     height: 600px;
 }
+@media screen and (min-width: 992px) {
+      .grid{
+        height: 800px;
+    }
+}
 [ui-grid-row] {
 display: table-row;
 }
@@ -150,6 +155,11 @@ word-break: break-word;
     div.col-xs-3.col-sm-3.col-md-3.text-center.ng-binding,
     div.col-xs-2.col-sm-2.col-md-2.text-center.ng-binding{
         font-size: 10px;
+    }
+}
+@media screen and (min-width: 1370px) {
+    .container-fluid.comenziContainer{
+        width: 70%;
     }
 }
 

@@ -15,7 +15,7 @@ class listaController {
 		 	});
 		 };
      $scope.servGetServicii();
-
+     // Radio afisare in ordinea crescatoare/descrescatoare a preturilor serviciilor
      $scope.RadioChange = function (rdo) {
       $scope.radio1 = rdo;
       $scope.radio2 = rdo;
@@ -26,30 +26,32 @@ class listaController {
        $scope.info.sort(sortBy('-suma'));
      }
     };
-		
+    // Pagination
   	$scope.viewby = 4;
 		$scope.currentPage = 1;
 		$scope.itemsPerPage = $scope.viewby;
+    $scope.pageChanged = function() {
+        console.log('Pagina: ' + $scope.currentPage);
+      };
 
     $scope.detaliiFunc = function($index){
       $scope.modalDetalii = $scope.info[$index+$scope.viewby*($scope.currentPage-1)].descriere;
     };
 
-    $scope.arr=[];
-  		$scope.pageChanged = function() {
-  			console.log('Pagina: ' + $scope.currentPage);
-  		};
+      $scope.arr=[];
   		let val = window.localStorage.getItem('local');
   		if(!val){
   			$scope.arr = [];
   		}else{
   			$scope.arr = JSON.parse(val);
   		}
+      //Verificare pentru elemente unice in sirul cu elemente alese de catre utilizator
   		function unic(arr, prop) {
   			return arr.map(function(e) { return e[prop]; }).filter(function(e,i,a){
   				return i === a.indexOf(e);
   			});
   		}
+      //Daca este respectata unicitatea alegerii elementelor, atunci se copiaza obiectul ales
   		let f = function(sir1,sir2){
   			let arr=[];
   			for(let i=0;i<sir1.length;i++){
@@ -63,15 +65,16 @@ class listaController {
   			return arr;
   		};
   		$scope.adaugaServicii = function($ind){
-  			$scope.arrFin = [];
-  			let index = $ind + $scope.viewby*($scope.currentPage-1);
-  			$scope.arrFin.push($scope.info[index]);
-  			$scope.arr = $scope.arr.concat($scope.arrFin);
-  			let servicii = unic($scope.arr,'serviciu');
-  			$scope.servicii = f(servicii,$scope.arr);
-  			window.localStorage.setItem('local',JSON.stringify($scope.servicii));
-        let dt = moment().format("DD/MM/YYYY hh:mm:ss a");
-        window.localStorage.setItem('time',dt);
+          $scope.arrFin = [];
+          let index = $ind + $scope.viewby*($scope.currentPage-1);
+          $scope.arrFin.push($scope.info[index]);
+          $scope.arr = $scope.arr.concat($scope.arrFin);
+          let servicii = unic($scope.arr,'serviciu');
+          $scope.servicii = f(servicii,$scope.arr);
+          //La fiecare accesare a functiei, se seteaza o noua data, ora, min, sec
+          window.localStorage.setItem('local',JSON.stringify($scope.servicii));
+          let dt = moment().format("DD/MM/YYYY hh:mm:ss a");
+          window.localStorage.setItem('time',dt);
   		}; 
 	}
 }

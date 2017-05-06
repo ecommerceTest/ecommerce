@@ -14565,10 +14565,10 @@ var verificareCampuri = function () {
 	}, {
 		key: 'verificareCampuriComanda',
 		value: function verificareCampuriComanda(text) {
-			var pattern = /^[^0-9\#\$\@\+]*$/;
+			var pattern = /^[a-zA-Z\d\-_.,\s]+$/;
 			var textReturnat = void 0;
-			if (text.match(pattern)) {
-				textReturnat = text.replace(/([~!@#$%^&*()_+=`{}\[\]\|\\:;'<>,.\/? ])+/g, '');
+			if (text.match(pattern) && !this.verificareCampNrComanda(text)) {
+				textReturnat = text;
 			} else {
 				textReturnat = '';
 			}
@@ -24776,7 +24776,7 @@ exports.default = adminController;
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _verificareCampuri = __webpack_require__(41);
@@ -24788,109 +24788,129 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var cartController = function cartController($scope, $window, serviceTrimiteComanda) {
-  _classCallCheck(this, cartController);
+    _classCallCheck(this, cartController);
 
-  $scope.oraseLista = ['Cj', 'TgM', 'Iasi', 'Tm', 'B'];
-  $scope.selectedOption = $scope.oraseLista[0];
+    $scope.oraseLista = ['CJ', 'SM', 'BV', 'MS', 'B'];
+    $scope.selectedOption = $scope.oraseLista[0];
 
-  var obj = new _verificareCampuri2.default();
+    var obj = new _verificareCampuri2.default();
 
-  var val = window.localStorage.getItem('local');
-  if (val) {
-    var sir = JSON.parse(val);
-    $scope.arrLocal = [];
-    for (var i = 0; i < sir.length; i++) {
-      var _obj = {
-        "serviciu": sir[i].serviciu,
-        "iconCode": sir[i].iconCode,
-        "descriere": sir[i].descriere,
-        "cant": 1,
-        "suma": sir[i].suma,
-        "id": sir[i].id
-      };
-      $scope.arrLocal.push(_obj);
-      window.localStorage.setItem('local', JSON.stringify($scope.arrLocal));
+    var val = window.localStorage.getItem('local');
+    if (val) {
+        var sir = JSON.parse(val);
+        $scope.arrLocal = [];
+        for (var i = 0; i < sir.length; i++) {
+            var _obj = {
+                "serviciu": sir[i].serviciu,
+                "iconCode": sir[i].iconCode,
+                "descriere": sir[i].descriere,
+                "cant": 1,
+                "suma": sir[i].suma,
+                "id": sir[i].id
+            };
+            $scope.arrLocal.push(_obj);
+            window.localStorage.setItem('local', JSON.stringify($scope.arrLocal));
+        }
     }
-  }
-  $scope.inc = function ($index, cant) {
-    var x = JSON.parse(window.localStorage.getItem('local'));
-    x[$index].cant = cant;
-    window.localStorage.setItem('local', JSON.stringify(x));
-  };
-  $scope.dec = function ($index, cant) {
-    var x = JSON.parse(window.localStorage.getItem('local'));
-    x[$index].cant = cant;
-    window.localStorage.setItem('local', JSON.stringify(x));
-  };
-  if (!$scope.arrLocal) {
-    $scope.ascuns = false;
-  } else {
-    $scope.ascuns = true;
-  }
-  // POST
-  $scope.servPostServicii = function (params) {
-    serviceTrimiteComanda.postData(params).then(function (response) {
-      if (response) {
+    $scope.inc = function ($index, cant) {
+        var x = JSON.parse(window.localStorage.getItem('local'));
+        x[$index].cant = cant;
+        window.localStorage.setItem('local', JSON.stringify(x));
+        $scope.totalSuma = totalSumaCart();
+    };
+    $scope.dec = function ($index, cant) {
+        var x = JSON.parse(window.localStorage.getItem('local'));
+        x[$index].cant = cant;
+        window.localStorage.setItem('local', JSON.stringify(x));
+        $scope.totalSuma = totalSumaCart();
+    };
+    if (!$scope.arrLocal) {
+        $scope.ascuns = false;
+    } else {
+        $scope.ascuns = true;
+    }
+    // POST
+    $scope.servPostServicii = function (params) {
+        serviceTrimiteComanda.postData(params).then(function (response) {
+            if (response) {
+                swal("Comanda a fost trimisă cu succes!", "", "success");
+                localStorage.removeItem('local');
+                window.location.href = "#";
+            } else {
+                sweetAlert("Atenţie!", "Comanda nu a fost trimisă cu succes!", "error");
+            }
+        }, function () {
+            console.log("Eroare in cartController - servicePostServicii");
+        });
+    };
+    $scope.trimite = function () {
+        $scope.arrLocal = exclus(JSON.parse(window.localStorage.getItem('local')));
+        if (obj.verificareCampuriComanda($scope.nume) === '') {
+            sweetAlert("Atenţie!", "Câmpul nume!", "error");
+        } else if (obj.verificareCampuriComanda($scope.prenume) === '') {
+            sweetAlert("Atenţie!", "Câmpul prenume!", "error");
+        } else if (obj.verificareCampuriComanda($scope.strada) === '') {
+            sweetAlert("Atenţie!", "Câmpul strada!", "error");
+        } else if (obj.verificareCampuriComanda($scope.strada) === '') {
+            sweetAlert("Atenţie!", "Câmpul strada!", "error");
+        } else if (obj.verificareCampNrComanda($scope.numar) === false) {
+            sweetAlert("Atenţie!", "Câmpul numar!", "error");
+        } else {
+            for (var _i = 0; _i < $scope.arrLocal.length; _i++) {
+                var params = {
+                    "serviciu": $scope.arrLocal[_i].serviciu,
+                    "cant": $scope.arrLocal[_i].cant,
+                    "status": "asteptare",
+                    "numeClient": $scope.nume,
+                    "prenumeClient": $scope.prenume,
+                    "oras": $scope.selectedOption,
+                    "strada": $scope.strada,
+                    "numar": $scope.numar,
+                    "suma": $scope.arrLocal[_i].suma
+                };
+                $scope.servPostServicii(params);
+                console.log(params);
+            }
+        }
+    };
+    $scope.stergeTot = function () {
+        $scope.arrLocal = [];
         localStorage.removeItem('local');
         window.location.href = "#";
-      }
-    }, function () {
-      console.log("Eroare in cartController - servicePostServicii");
-    });
-  };
-  $scope.trimite = function () {
-    $scope.arrLocal = exclus(JSON.parse(window.localStorage.getItem('local')));
-    if (obj.verificareCampuriComanda($scope.nume) === '') {
-      sweetAlert("Atenţie!", "Câmpul nume!", "error");
-    } else if (obj.verificareCampuriComanda($scope.prenume) === '') {
-      sweetAlert("Atenţie!", "Câmpul prenume!", "error");
-    } else if (obj.verificareCampuriComanda($scope.strada) === '') {
-      sweetAlert("Atenţie!", "Câmpul strada!", "error");
-    } else if (obj.verificareCampuriComanda($scope.strada) === '') {
-      sweetAlert("Atenţie!", "Câmpul strada!", "error");
-    } else if (obj.verificareCampNrComanda($scope.numar) === false) {
-      sweetAlert("Atenţie!", "Câmpul numar!", "error");
-    } else {
-      for (var _i = 0; _i < $scope.arrLocal.length; _i++) {
-        var params = {
-          "serviciu": $scope.arrLocal[_i].serviciu,
-          "cant": $scope.arrLocal[_i].cant,
-          "suma": $scope.arrLocal[_i].suma,
-          "status": "asteptare",
-          "numeClient": $scope.nume,
-          "prenumeClient": $scope.prenume,
-          "oras": $scope.selectedOption,
-          "strada": $scope.strada,
-          "numar": $scope.numar
-        };
-        //$scope.servPostServicii(params);
-        console.log(params);
-      }
-    }
-  };
-  $scope.stergeTot = function () {
-    $scope.arrLocal = [];
-    localStorage.removeItem('local');
-    window.location.href = "#";
-  };
+    };
 
-  // Btn Anulează
-  $scope.cancel = function () {
-    $scope.nume = '';
-    $scope.prenume = '';
-    $scope.strada = '';
-    $scope.numar = '';
-    $scope.selectedOption = $scope.oraseLista[0];
-  };
-  var exclus = function exclus(arr) {
-    var newArr = [];
-    for (var _i2 = 0; _i2 < arr.length; _i2++) {
-      if (arr[_i2].cant > 0) {
-        newArr.push(arr[_i2]);
-      }
-    }
-    return newArr;
-  };
+    // Btn Anulează
+    $scope.cancel = function () {
+        $scope.nume = '';
+        $scope.prenume = '';
+        $scope.strada = '';
+        $scope.numar = '';
+        $scope.selectedOption = $scope.oraseLista[0];
+    };
+    var exclus = function exclus(arr) {
+        var newArr = [];
+        for (var _i2 = 0; _i2 < arr.length; _i2++) {
+            if (arr[_i2].cant > 0) {
+                newArr.push(arr[_i2]);
+            }
+        }
+        return newArr;
+    };
+    var totalSumaCart = function totalSumaCart() {
+        var total = void 0;
+        if (!window.localStorage.getItem('local')) {
+            total = 0;
+            return total;
+        } else {
+            var arrTotal = JSON.parse(window.localStorage.getItem('local'));
+            total = 0;
+            for (var _i3 = 0; _i3 < arrTotal.length; _i3++) {
+                total = total + arrTotal[_i3].suma * arrTotal[_i3].cant;
+            }
+        }
+        return total;
+    };
+    $scope.totalSuma = totalSumaCart();
 };
 
 cartController.$inject = ['$scope', '$window', 'serviceTrimiteComanda'];
@@ -24918,7 +24938,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var comenziController = function comenziController($scope, serviceComenzi) {
 	_classCallCheck(this, comenziController);
 
-	$scope.oraseLista = ['Cj', 'TgM', 'Iasi', 'Tm', 'B'];
+	$scope.oraseLista = ['CJ', 'SM', 'BV', 'MS', 'B'];
 	var obj = new _verificareCampuri2.default();
 
 	$scope.gridComenzi = {
@@ -24938,6 +24958,7 @@ var comenziController = function comenziController($scope, serviceComenzi) {
 		}, {
 			name: 'serviciu',
 			displayName: 'SERVICIU',
+			width: 160,
 			enableFiltering: true,
 			enableCellEdit: false
 		}, {
@@ -24956,17 +24977,19 @@ var comenziController = function comenziController($scope, serviceComenzi) {
 			name: 'status',
 			displayName: 'STATUS',
 			rowHeight: 'auto',
-			width: 140,
+			width: 120,
 			enableFiltering: true,
 			enableCellEdit: true
 		}, {
 			name: 'numeClient',
 			displayName: 'NUME',
+			width: 150,
 			enableFiltering: true,
 			enableCellEdit: false
 		}, {
 			name: 'prenumeClient',
 			displayName: 'PRENUME',
+			width: 150,
 			enableFiltering: true,
 			enableCellEdit: false
 		}, {
@@ -24984,13 +25007,13 @@ var comenziController = function comenziController($scope, serviceComenzi) {
 		}, {
 			name: 'numar',
 			displayName: 'NUMĂR',
-			width: 100,
+			width: 90,
 			enableFiltering: true,
 			enableCellEdit: false
 		}, {
 			name: 'editare',
 			displayName: '',
-			cellTemplate: '<div class="ui-grid-cell-contents padding text-center"><button type="button" class="btn btn-primary btn-xs" ng-click="grid.appScope.editare(row)"><i class="fa fa-pencil"></i>Editeză</button></div>',
+			cellTemplate: '<div class="ui-grid-cell-contents padding text-center"><button type="button" class="btn btn-primary btn-xs" ng-click="grid.appScope.editare(row)"><i class="fa fa-pencil"></i>Salvează</button></div>',
 			width: 90,
 			enableFiltering: false,
 			enableCellEdit: false,
@@ -25049,7 +25072,16 @@ var comenziController = function comenziController($scope, serviceComenzi) {
 	$scope.editare = function (row) {
 		$scope.arata = false;
 		var params = {
-			"status": row.entity.status
+			"serviciu": row.entity.serviciu,
+			"cant": row.entity.cant,
+			"status": row.entity.status,
+			"numeClient": row.entity.numeClient,
+			"prenumeClient": row.entity.prenumeClient,
+			"oras": row.entity.oras,
+			"strada": row.entity.strada,
+			"numar": row.entity.numar,
+			"suma": row.entity.suma,
+			"id": row.entity.id
 		};
 		if (obj.verificareString(params.status)) {
 			if (obj.verificareLungString(12, params.status)) {
@@ -25103,6 +25135,14 @@ var controllerPrincipal = function controllerPrincipal($scope, $window, $locatio
 	window.onload = function () {
 		if (!window.AUT) {
 			window.location.href = "#";
+		}
+		var val = window.localStorage.getItem('time');
+		if (val) {
+			console.log("Atenţie! De la ultima adăugare a serviciilor în coşul de cumpărături vor trece 10 min până la resetarea acestuia, pentru verificare încarcă din nou pagina după 10 min!");
+			var dt = moment().format("DD/MM/YYYY hh:mm:ss a");
+			if (moment.utc(moment(dt, "DD/MM/YYYY HH:mm:ss").diff(moment(val, "DD/MM/YYYY HH:mm:ss"))).format("HH:mm:ss") > '00:10:00') {
+				window.localStorage.removeItem('local');
+			}
 		}
 	};
 };
@@ -25160,7 +25200,7 @@ var gestionareController = function gestionareController($scope, serviceGestiona
 			displayName: 'ICON CODE',
 			width: 120,
 			enableFiltering: true,
-			enableCellEdit: true
+			enableCellEdit: false
 		}, {
 			name: 'suma',
 			displayName: 'SUMA',
@@ -25171,12 +25211,13 @@ var gestionareController = function gestionareController($scope, serviceGestiona
 			name: 'descriere',
 			displayName: 'DESCRIERE',
 			rowHeight: 'auto',
+			width: 370,
 			enableFiltering: true,
 			enableCellEdit: true
 		}, {
 			name: 'editare',
 			displayName: '',
-			cellTemplate: '<div class="ui-grid-cell-contents padding text-center"><button type="button" class="btn btn-primary btn-xs" ng-click="grid.appScope.editare(row)"><i class="fa fa-pencil"></i>Editeză</button></div>',
+			cellTemplate: '<div class="ui-grid-cell-contents padding text-center"><button type="button" class="btn btn-primary btn-xs" ng-click="grid.appScope.editare(row)"><i class="fa fa-pencil"></i>Salvează</button></div>',
 			width: 90,
 			enableFiltering: false,
 			enableCellEdit: false,
@@ -25251,7 +25292,7 @@ var gestionareController = function gestionareController($scope, serviceGestiona
 		};
 		params.suma = Number(row.entity.suma);
 		if (obj.verificareSuma(params.suma) && obj.verificareString(params.serviciu) && obj.verificareString(params.iconCode) && obj.verificareString(params.descriere)) {
-			if (obj.verificareLungString(25, params.serviciu) && obj.verificareLungString(200, params.descriere)) {
+			if (obj.verificareLungString(40, params.serviciu) && obj.verificareLungString(200, params.descriere)) {
 				$scope.servPutServicii(params, row.entity.id);
 			} else {
 				$scope.arata = true;
@@ -25287,7 +25328,7 @@ var gestionareController = function gestionareController($scope, serviceGestiona
 		}
 		if (count === 0) {
 			var params = {
-				"serviciu": $scope.serviciu,
+				"serviciu": $scope.serviciu.trim(),
 				"iconCode": $scope.selectedOption.iconCode,
 				"descriere": $scope.descriere,
 				"suma": Number($scope.suma),
@@ -25341,7 +25382,7 @@ var listaController = function listaController($scope, $window, serviceGestionar
     });
   };
   $scope.servGetServicii();
-
+  // Radio afisare in ordinea crescatoare/descrescatoare a preturilor serviciilor
   $scope.RadioChange = function (rdo) {
     $scope.radio1 = rdo;
     $scope.radio2 = rdo;
@@ -25352,25 +25393,26 @@ var listaController = function listaController($scope, $window, serviceGestionar
       $scope.info.sort(sortBy('-suma'));
     }
   };
-
+  // Pagination
   $scope.viewby = 4;
   $scope.currentPage = 1;
   $scope.itemsPerPage = $scope.viewby;
+  $scope.pageChanged = function () {
+    console.log('Pagina: ' + $scope.currentPage);
+  };
 
   $scope.detaliiFunc = function ($index) {
     $scope.modalDetalii = $scope.info[$index + $scope.viewby * ($scope.currentPage - 1)].descriere;
   };
 
   $scope.arr = [];
-  $scope.pageChanged = function () {
-    console.log('Pagina: ' + $scope.currentPage);
-  };
   var val = window.localStorage.getItem('local');
   if (!val) {
     $scope.arr = [];
   } else {
     $scope.arr = JSON.parse(val);
   }
+  //Verificare pentru elemente unice in sirul cu elemente alese de catre utilizator
   function unic(arr, prop) {
     return arr.map(function (e) {
       return e[prop];
@@ -25378,6 +25420,7 @@ var listaController = function listaController($scope, $window, serviceGestionar
       return i === a.indexOf(e);
     });
   }
+  //Daca este respectata unicitatea alegerii elementelor, atunci se copiaza obiectul ales
   var f = function f(sir1, sir2) {
     var arr = [];
     for (var i = 0; i < sir1.length; i++) {
@@ -25397,6 +25440,7 @@ var listaController = function listaController($scope, $window, serviceGestionar
     $scope.arr = $scope.arr.concat($scope.arrFin);
     var servicii = unic($scope.arr, 'serviciu');
     $scope.servicii = f(servicii, $scope.arr);
+    //La fiecare accesare a functiei, se seteaza o noua data, ora, min, sec
     window.localStorage.setItem('local', JSON.stringify($scope.servicii));
     var dt = moment().format("DD/MM/YYYY hh:mm:ss a");
     window.localStorage.setItem('time', dt);

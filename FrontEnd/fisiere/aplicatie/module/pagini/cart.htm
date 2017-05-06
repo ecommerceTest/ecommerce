@@ -1,7 +1,8 @@
 <div class="container">
 	 	<div class="row">
 	 		<div class="col-md-12">
-	 		  <h4 class="textLegenda" style="margin-bottom: 50px;">Coşul de cumpărături</h4>
+	 		  <h4 class="textLegenda" style="margin-bottom: 25px;">Coşul de cumpărături</h4>
+	 		  <h4 class="text-right" style="margin-bottom: 25px;">Total {{totalSuma}} Ron</h4>
 	 			<ul class="list-group">
 	 				<li class="list-group-item row" ng-repeat="a in arrLocal track by $index">
 	 					<div class="col-xs-3 col-sm-3 col-md-3 text-center">{{a.serviciu}}</div>
@@ -21,7 +22,7 @@
 	 	</div>
 	 	<div class="row" ng-if="ascuns">
 	 		<div class="col-md-12 text-center">
-	 			<button class="btn btn-primary" type="submit"><span data-toggle="modal" data-target="#trimite">Continuă</span></button>
+	 			<a class="btn btn-primary" type="submit"><span data-toggle="modal" data-target="#trimite">Continuă</span></a>
 	 			<button ng-click="stergeTot()" class="btn btn-danger" type="submit">Şterge tot</button>
 	 		</div>
 	 	</div>

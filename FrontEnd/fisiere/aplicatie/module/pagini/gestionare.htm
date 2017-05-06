@@ -1,14 +1,9 @@
 <div class="container">
 	 <p class="bg-primary text-center" ng-show="arata" style="line-height: 20px;margin-bottom: 5px;vertical-align: middle;color: white;">Aţi depăşit numărul de caractere admise!</p>
-   <div ui-grid="gridServicii" ui-grid-edit class="grid hidden-xs hidden-sm"></div>
+   <div ui-grid="gridServicii" ui-grid-edit class="grid"></div>
 </div>
-<div class="container hidden-xs hidden-sm">
-	<button type="button" class="btn btn-primary btn-block" style="margin:10px auto;"><span data-toggle="modal" data-target="#serv">Adaugă un serviciu</span></button>
+<div class="container">
+	<a type="button" class="btn btn-primary btn-block" style="margin:10px auto;"><span data-toggle="modal" data-target="#serv">Adaugă un serviciu</span></a>
 	<!-- Modal Servicii -->
   <div ng-include="'../fisiere/aplicatie/module/pagini/parti/serviciiModal.htm'"></div>
-</div>
-<div class="container-fluid">
-	<p style="color:red;font-size:20px;background-color: white;" class="text-center hidden-md hidden-lg">
-			Conţinutul poate fi vizualizat pe rezoluţii mai mari de 992px
-	<p>
 </div>

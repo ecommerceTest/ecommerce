@@ -6,7 +6,7 @@
       "status": "asteptare",
       "numeClient": "Ceban",
       "prenumeClient": "Stela",
-      "oras": "Cj",
+      "oras": "CJ",
       "strada": "str.Apelor",
       "numar": "12",
       "suma": 200,
@@ -19,7 +19,7 @@
       "status": "asteptare",
       "numeClient": "Ciudin",
       "prenumeClient": "Adrian",
-      "oras": "TgM",
+      "oras": "SM",
       "strada": "str.Zambetelor",
       "numar": "75",
       "id": 2
@@ -31,7 +31,7 @@
       "status": "asteptare",
       "numeClient": "Muresan",
       "prenumeClient": "Darius",
-      "oras": "Iasi",
+      "oras": "BV",
       "strada": "str. Parang",
       "numar": "20",
       "id": 3
@@ -42,8 +42,8 @@
       "status": "asteptare",
       "numeClient": "Florea",
       "prenumeClient": "Anita",
-      "oras": "Tm",
-      "strada": "str. Zambilelor",
+      "oras": "MS",
+      "strada": "str. Zambetelor",
       "numar": "145",
       "suma": 450,
       "id": 4
@@ -66,7 +66,7 @@
       "status": "asteptare",
       "numeClient": "Ceban",
       "prenumeClient": "Stela",
-      "oras": "Cj",
+      "oras": "CJ",
       "strada": "str.Apelor",
       "numar": "12",
       "suma": 200,
@@ -79,7 +79,7 @@
       "status": "asteptare",
       "numeClient": "Ciudin",
       "prenumeClient": "Adrian",
-      "oras": "TgM",
+      "oras": "SM",
       "strada": "str.Zambetelor",
       "numar": "75",
       "id": 7
@@ -91,7 +91,7 @@
       "status": "asteptare",
       "numeClient": "Muresan",
       "prenumeClient": "Darius",
-      "oras": "Iasi",
+      "oras": "BV",
       "strada": "str. Parang",
       "numar": "20",
       "id": 8
@@ -102,8 +102,8 @@
       "status": "asteptare",
       "numeClient": "Florea",
       "prenumeClient": "Anita",
-      "oras": "Tm",
-      "strada": "str. Zambilelor",
+      "oras": "MS",
+      "strada": "str. Zambetelor",
       "numar": "145",
       "suma": 450,
       "id": 9
@@ -126,7 +126,7 @@
       "status": "asteptare",
       "numeClient": "Ceban",
       "prenumeClient": "Stela",
-      "oras": "Cj",
+      "oras": "CJ",
       "strada": "str.Apelor",
       "numar": "12",
       "suma": 200,
@@ -139,7 +139,7 @@
       "status": "asteptare",
       "numeClient": "Ciudin",
       "prenumeClient": "Adrian",
-      "oras": "TgM",
+      "oras": "SM",
       "strada": "str.Zambetelor",
       "numar": "75",
       "id": 12
@@ -151,7 +151,7 @@
       "status": "asteptare",
       "numeClient": "Muresan",
       "prenumeClient": "Darius",
-      "oras": "Iasi",
+      "oras": "BV",
       "strada": "str. Parang",
       "numar": "20",
       "id": 13
@@ -162,8 +162,8 @@
       "status": "asteptare",
       "numeClient": "Florea",
       "prenumeClient": "Anita",
-      "oras": "Tm",
-      "strada": "str. Zambilelor",
+      "oras": "MS",
+      "strada": "str. Zambetelor",
       "numar": "145",
       "suma": 450,
       "id": 14
@@ -186,7 +186,7 @@
       "status": "asteptare",
       "numeClient": "Ceban",
       "prenumeClient": "Stela",
-      "oras": "Cj",
+      "oras": "CJ",
       "strada": "str.Apelor",
       "numar": "12",
       "suma": 200,
@@ -199,7 +199,7 @@
       "status": "asteptare",
       "numeClient": "Ciudin",
       "prenumeClient": "Adrian",
-      "oras": "TgM",
+      "oras": "SM",
       "strada": "str.Zambetelor",
       "numar": "75",
       "id": 17
@@ -211,7 +211,7 @@
       "status": "asteptare",
       "numeClient": "Muresan",
       "prenumeClient": "Darius",
-      "oras": "Iasi",
+      "oras": "BV",
       "strada": "str. Parang",
       "numar": "20",
       "id": 18
@@ -222,8 +222,8 @@
       "status": "asteptare",
       "numeClient": "Florea",
       "prenumeClient": "Anita",
-      "oras": "Tm",
-      "strada": "str. Zambilelor",
+      "oras": "MS",
+      "strada": "str. Zambetelor",
       "numar": "145",
       "suma": 450,
       "id": 19
@@ -247,7 +247,7 @@
       "status": "asteptare",
       "numeClient": "Ceban",
       "prenumeClient": "Stela",
-      "oras": "Cj",
+      "oras": "CJ",
       "strada": "Parang",
       "numar": "37",
       "id": 21
@@ -259,29 +259,17 @@
       "status": "asteptare",
       "numeClient": "Ceban",
       "prenumeClient": "Stela",
-      "oras": "Cj",
+      "oras": "CJ",
       "strada": "Parang",
       "numar": "37",
       "id": 22
-    },
-    {
-      "serviciu": "Telefonie1000",
-      "cant": 2,
-      "suma": 50,
-      "status": "asteptare",
-      "numeClient": "Ceban",
-      "prenumeClient": "Stela",
-      "oras": "Cj",
-      "strada": "Parang",
-      "numar": "37",
-      "id": 23
     }
   ],
   "servicii": [
     {
       "serviciu": "Internet200",
       "iconCode": "1",
-      "descriere": "Internet 200 Mb",
+      "descriere": "Internet 200 MB",
       "suma": 250,
       "id": 1
     },
@@ -303,7 +291,7 @@
       "serviciu": "Internet200+TV150",
       "iconCode": "1x2",
       "suma": 500,
-      "descriere": "TV 150 canale si Internet 200 Mb",
+      "descriere": "TV 150 canale si Internet 200 MB",
       "id": 4
     },
     {
@@ -337,7 +325,7 @@
     {
       "serviciu": "Internet200",
       "iconCode": "1",
-      "descriere": "Internet 200 Mb",
+      "descriere": "Internet 200 MB",
       "suma": 200,
       "id": 9
     },
@@ -359,7 +347,7 @@
       "serviciu": "Internet200+TV150",
       "iconCode": "1x2",
       "suma": 500,
-      "descriere": "TV 150 canale si Internet 200 Mb",
+      "descriere": "TV 150 canale si Internet 200 MB",
       "id": 12
     },
     {
@@ -393,7 +381,7 @@
     {
       "serviciu": "Internet200",
       "iconCode": "1",
-      "descriere": "Internet 200 Mb",
+      "descriere": "Internet 200 MB",
       "suma": 200,
       "id": 17
     },
@@ -407,15 +395,15 @@
     {
       "serviciu": "Telefonie1000",
       "iconCode": "3",
-      "suma": 50,
       "descriere": "Telefonie 1000 min",
+      "suma": 50,
       "id": 19
     },
     {
       "serviciu": "Internet200+TV150",
       "iconCode": "1x2",
       "suma": 500,
-      "descriere": "TV 150 canale si Internet 200 Mb",
+      "descriere": "TV 150 canale si Internet 200 MB",
       "id": 20
     },
     {
@@ -457,7 +445,7 @@
   "administrator": [
     {
       "utilizator": "Admin",
-      "parola": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
+      "parola": "03ac674216f3e15c761ee1a5e255f067953623c8B388B4459e13f978d7c846f4",
       "id": 1
     }
   ]

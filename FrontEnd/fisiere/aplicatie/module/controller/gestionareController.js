@@ -34,7 +34,7 @@ class gestionareController {
 				displayName: 'ICON CODE',
 				width: 120, 
 				enableFiltering: true,
-				enableCellEdit: true,
+				enableCellEdit: false,
 			},
 			{
 				name: 'suma',
@@ -47,13 +47,14 @@ class gestionareController {
 				name: 'descriere',
 				displayName: 'DESCRIERE',
 				rowHeight: 'auto',
+				width: 370,
 				enableFiltering: true,
 				enableCellEdit: true,
 			},
 			{
 				name:'editare',
 				displayName:'',
-				cellTemplate: '<div class="ui-grid-cell-contents padding text-center"><button type="button" class="btn btn-primary btn-xs" ng-click="grid.appScope.editare(row)"><i class="fa fa-pencil"></i>Editeză</button></div>',
+				cellTemplate: '<div class="ui-grid-cell-contents padding text-center"><button type="button" class="btn btn-primary btn-xs" ng-click="grid.appScope.editare(row)"><i class="fa fa-pencil"></i>Salvează</button></div>',
 				width: 90,    
 				enableFiltering: false,
 				enableCellEdit: false,
@@ -132,7 +133,7 @@ class gestionareController {
               	};
               	params.suma=Number(row.entity.suma);
               	if(obj.verificareSuma(params.suma) && obj.verificareString(params.serviciu) && obj.verificareString(params.iconCode) && obj.verificareString(params.descriere)){
-              		if(obj.verificareLungString(25,params.serviciu) && obj.verificareLungString(200,params.descriere)){
+              		if(obj.verificareLungString(40,params.serviciu) && obj.verificareLungString(200,params.descriere)){
               			$scope.servPutServicii(params,row.entity.id);
 	        		}else{
 	        			$scope.arata = true;
@@ -168,7 +169,7 @@ class gestionareController {
 			}
 			if(count === 0){
 				let params = {
-              		"serviciu":$scope.serviciu,
+              		"serviciu":$scope.serviciu.trim(),
               		"iconCode":$scope.selectedOption.iconCode,
               		"descriere":$scope.descriere,
               		"suma":Number($scope.suma),
